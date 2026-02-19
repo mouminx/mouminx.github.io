@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moumin | Projects</title>
+  <meta name="description" content="Portfolio site showcasing Moumin's GitHub projects." />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #0f766e;
+      --accent-hover: #115e59;
+      --border: #dbe3ee;
+      --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 0% 0%, #e2f5f1 0, transparent 35%),
+                  radial-gradient(circle at 100% 100%, #e6eefc 0, transparent 30%),
+                  var(--bg);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 18px 72px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .links {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .button.primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .button.ghost {
+      border-color: var(--border);
+      color: var(--text);
+      background: #fff;
+    }
+
+    .button.ghost:hover {
+      transform: translateY(-1px);
+      border-color: #c7d3e2;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+    }
+
+    #status {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .meta {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .card a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 22px;
+      }
+
+      .container {
+        padding-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>Moumin</h1>
+      <p class="subtitle">
+        I build software and share projects on GitHub. This page auto-loads my latest non-fork repositories.
+      </p>
+      <div class="links">
+        <a class="button primary" href="https://github.com/mouminx" target="_blank" rel="noreferrer">GitHub Profile</a>
+        <a class="button ghost" href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Projects</h2>
+      <p id="status">Loading projects...</p>
+      <div id="projects" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script>
+    const username = "mouminx";
+    const container = document.getElementById("projects");
+    const status = document.getElementById("status");
+
+    function updatedText(isoDate) {
+      const dt = new Date(isoDate);
+      return dt.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
+    }
+
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=12`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`GitHub API returned ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((repos) => {
+        const filtered = repos
+          .filter((repo) => !repo.fork)
+          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+
+        if (!filtered.length) {
+          status.textContent = "No public non-fork repositories found yet.";
+          return;
+        }
+
+        status.textContent = `Showing ${filtered.length} latest repositories.`;
+
+        filtered.forEach((repo) => {
+          const card = document.createElement("article");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${repo.name}</h3>
+            <p>${repo.description ? repo.description : "No description added yet."}</p>
+            <div class="meta">
+              <span>Updated ${updatedText(repo.pushed_at)}</span>
+              <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch((error) => {
+        status.textContent = "Could not load projects from GitHub API.";
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
