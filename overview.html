@@ -161,10 +161,17 @@
       box-shadow: 0 10px 24px rgba(20, 181, 110, 0.22);
     }
 
-    .section-title { font-size: 1.25rem; margin: 0 0 12px; }
+    .projects-section { margin-top: 34px; }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ecfff5;
+    }
     .status { color: var(--muted); margin: 0 0 12px; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; perspective: 1100px; }
 
     .card {
       background: rgba(8, 20, 14, 0.48);
@@ -177,7 +184,9 @@
       flex-direction: column;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .card:hover {
@@ -230,7 +239,6 @@
     <nav>
       <a class="site-link chakra-petch-medium" href="/">Moumin Portfolio</a>
       <div class="links">
-        <a class="btn" href="/">Choose Path</a>
         <a class="btn" href="/in-depth.html">In-Depth View</a>
       </div>
     </nav>
@@ -252,8 +260,8 @@
       </div>
     </section>
 
-    <section>
-      <h2 class="section-title chakra-petch-semibold">All Projects</h2>
+    <section class="projects-section">
+      <h2 class="section-title chakra-petch-semibold">Projects Showcase</h2>
       <p class="status" id="status">Loading projects...</p>
       <div class="grid" id="projects" aria-live="polite"></div>
     </section>
@@ -334,6 +342,37 @@
       return tagPalette.default;
     }
 
+    const tiltEnabled = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    function attachTilt(card) {
+      if (!tiltEnabled) return;
+
+      const maxTilt = 7;
+      let frame = null;
+      let targetX = 0;
+      let targetY = 0;
+
+      card.addEventListener("mousemove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width;
+        const py = (event.clientY - rect.top) / rect.height;
+        targetY = (px - 0.5) * maxTilt * 2;
+        targetX = (0.5 - py) * maxTilt * 2;
+
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          card.style.transform = `rotateX(${targetX.toFixed(2)}deg) rotateY(${targetY.toFixed(2)}deg)`;
+          frame = null;
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        if (frame) cancelAnimationFrame(frame);
+        frame = null;
+        card.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+    }
+
     async function fetchAllRepos(user) {
       const all = [];
       let page = 1;
@@ -386,6 +425,7 @@
             </div>
           `;
           projectsEl.appendChild(card);
+          attachTilt(card);
         });
       })
       .catch(() => {

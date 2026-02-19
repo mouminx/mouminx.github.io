@@ -118,9 +118,8 @@
 
     .eyebrow { margin: 0; color: var(--green); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
     h1 { margin: 8px 0 10px; font-size: clamp(1.95rem, 4vw, 3rem); letter-spacing: -0.02em; }
-    .lead { margin: 0; max-width: 64ch; color: var(--muted); }
 
-    .grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; perspective: 1100px; }
 
     .card {
       border: 1px solid var(--line);
@@ -130,13 +129,15 @@
       color: inherit;
       background: rgba(10, 24, 17, 0.44);
       display: block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.12s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
       min-height: 240px;
+      transform-style: preserve-3d;
+      will-change: transform;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
 
-    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5); border-color: #2f7358; }
+    .card:hover { box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5); border-color: #2f7358; }
 
     .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 0; padding: 5px 10px; margin-bottom: 10px; transition: box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
     .overview .tag { background: rgba(52, 146, 255, 0.20); color: #79beff; }
@@ -146,7 +147,6 @@
       border-color: rgba(86, 176, 255, 0.75);
       box-shadow: 0 14px 34px rgba(22, 121, 242, 0.28);
     }
-
 
     .card.overview:hover h2 {
       color: #f7fbff;
@@ -167,13 +167,6 @@
       color: #fff9f3;
       text-shadow: 0 0 14px rgba(255, 160, 82, 0.82), 0 0 30px rgba(255, 140, 60, 0.36);
     }
-    .linkline { margin-top: 16px; font-weight: 700; }
-    .overview .linkline { color: #72ffc0; }
-    .deep .linkline { color: #54d79b; }
-
-    .footer { margin-top: 20px; color: var(--muted); font-size: 0.95rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .footer a { color: var(--text); text-decoration: none; font-weight: 600; border-bottom: 1px solid #2d5d4a; }
-    .footer a:hover { color: var(--green); border-bottom-color: #48ca90; }
 
     @media (max-width: 800px) {
       .grid { grid-template-columns: 1fr; }
@@ -215,5 +208,39 @@
       </a>
     </section>
   </main>
+
+  <script>
+    const tiltEnabled = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (tiltEnabled) {
+      const cards = document.querySelectorAll(".card");
+      cards.forEach((card) => {
+        const maxTilt = 7;
+        let frame = null;
+        let targetX = 0;
+        let targetY = 0;
+
+        card.addEventListener("mousemove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width;
+          const py = (event.clientY - rect.top) / rect.height;
+          targetY = (px - 0.5) * maxTilt * 2;
+          targetX = (0.5 - py) * maxTilt * 2;
+
+          if (frame) return;
+          frame = requestAnimationFrame(() => {
+            card.style.transform = `rotateX(${targetX.toFixed(2)}deg) rotateY(${targetY.toFixed(2)}deg)`;
+            frame = null;
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          if (frame) cancelAnimationFrame(frame);
+          frame = null;
+          card.style.transform = "rotateX(0deg) rotateY(0deg)";
+        });
+      });
+    }
+  </script>
 </body>
 </html>
