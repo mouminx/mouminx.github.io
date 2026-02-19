@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moumin | Overview</title>
+  <meta name="description" content="Quick overview portfolio for recruiters and hiring teams." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #dcffee;
+      --muted: #8eb9a6;
+      --accent: #1ddf89;
+      --accent-dark: #14b56e;
+      --line: rgba(98, 238, 169, 0.22);
+      --shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    .chakra-petch-light { font-family: "Chakra Petch", sans-serif; font-weight: 300; font-style: normal; }
+    .chakra-petch-regular { font-family: "Chakra Petch", sans-serif; font-weight: 400; font-style: normal; }
+    .chakra-petch-medium { font-family: "Chakra Petch", sans-serif; font-weight: 500; font-style: normal; }
+    .chakra-petch-semibold { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-style: normal; }
+    .chakra-petch-bold { font-family: "Chakra Petch", sans-serif; font-weight: 700; font-style: normal; }
+    .chakra-petch-light-italic { font-family: "Chakra Petch", sans-serif; font-weight: 300; font-style: italic; }
+    .chakra-petch-regular-italic { font-family: "Chakra Petch", sans-serif; font-weight: 400; font-style: italic; }
+    .chakra-petch-medium-italic { font-family: "Chakra Petch", sans-serif; font-weight: 500; font-style: italic; }
+    .chakra-petch-semibold-italic { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-style: italic; }
+    .chakra-petch-bold-italic { font-family: "Chakra Petch", sans-serif; font-weight: 700; font-style: italic; }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -24%;
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(40px) saturate(120%);
+      opacity: 0.34;
+      transform: translate3d(0, 0, 0);
+      background-repeat: no-repeat;
+    }
+
+    body::before {
+      background:
+        radial-gradient(closest-side, rgba(29, 223, 137, 0.30), transparent 72%),
+        radial-gradient(closest-side, rgba(18, 102, 63, 0.26), transparent 70%);
+      background-size: 120% 120%, 140% 140%;
+      background-position: 12% 22%, 82% 78%;
+      animation: liquidBlobOne 18s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background:
+        radial-gradient(closest-side, rgba(57, 255, 166, 0.20), transparent 70%),
+        radial-gradient(closest-side, rgba(13, 71, 44, 0.30), transparent 75%);
+      background-size: 130% 130%, 150% 150%;
+      background-position: 76% 16%, 24% 84%;
+      animation: liquidBlobTwo 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes liquidFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes liquidBlobOne {
+      0% { transform: translate(-2%, -1%) scale(1); }
+      50% { transform: translate(3%, 2%) scale(1.08); }
+      100% { transform: translate(-1%, 4%) scale(0.96); }
+    }
+
+    @keyframes liquidBlobTwo {
+      0% { transform: translate(2%, 1%) scale(1.02); }
+      50% { transform: translate(-3%, -2%) scale(0.95); }
+      100% { transform: translate(1%, -4%) scale(1.08); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body,
+      body::before,
+      body::after { animation: none !important; }
+    }
+
+    body {
+      margin: 0;
+      font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
+      min-height: 100vh;
+      color: var(--text);
+      position: relative;
+      overflow-x: hidden;
+      isolation: isolate;
+      background: linear-gradient(145deg, #010302 0%, #04110c 48%, #020705 100%);
+      background-size: 320% 320%;
+      animation: liquidFlow 16s ease-in-out infinite;
+      line-height: 1.55;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 36px 18px 70px; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap; }
+
+    .site-link { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.01em; }
+
+    .links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: rgba(10, 24, 17, 0.44);
+      color: var(--text);
+      text-decoration: none;
+      padding: 9px 12px;
+      font-weight: 600;
+      backdrop-filter: blur(12px) saturate(130%);
+      -webkit-backdrop-filter: blur(12px) saturate(130%);
+    }
+
+    .btn:hover { border-color: #2f7358; color: var(--accent); }
+
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #001109; }
+    .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #001109; }
+
+    .hero {
+      background: rgba(8, 20, 14, 0.48);
+      border: 1px solid rgba(98, 238, 169, 0.24);
+      border-radius: 0;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+      backdrop-filter: blur(14px) saturate(135%);
+      -webkit-backdrop-filter: blur(14px) saturate(135%);
+    }
+
+    h1 { margin: 0; font-size: clamp(1.95rem, 4vw, 2.7rem); letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); margin: 10px 0 0; max-width: 65ch; }
+    .section-title { font-size: 1.25rem; margin: 0 0 12px; }
+    .status { color: var(--muted); margin: 0 0 12px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+    .card {
+      background: rgba(8, 20, 14, 0.48);
+      border: 1px solid rgba(98, 238, 169, 0.24);
+      border-radius: 0;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      min-height: 168px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(12px) saturate(130%);
+      -webkit-backdrop-filter: blur(12px) saturate(130%);
+    }
+
+    .card h3 { margin: 0 0 6px; font-size: 1.03rem; color: #dbffec; }
+    .card p { margin: 0; color: var(--muted); flex: 1; }
+
+    .meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; font-size: 0.88rem; color: var(--muted); }
+
+    .card a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .card a:hover { text-decoration: underline; color: #7dffcb; }
+
+    @media (max-width: 700px) {
+      .container { padding-top: 24px; }
+      .hero { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <a class="site-link chakra-petch-medium" href="/">Moumin Portfolio</a>
+      <div class="links">
+        <a class="btn" href="/">Choose Path</a>
+        <a class="btn" href="/in-depth.html">In-Depth View</a>
+        <a class="btn primary" href="https://github.com/mouminx" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1 class="chakra-petch-bold">Overview</h1>
+      <p class="subtitle">A fast skim for recruiters and hiring teams. This view highlights recent work and core tools without long writeups.</p>
+    </section>
+
+    <section>
+      <h2 class="section-title chakra-petch-semibold">Recent Projects</h2>
+      <p class="status" id="status">Loading projects...</p>
+      <div class="grid" id="projects" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script>
+    const username = "mouminx";
+    const status = document.getElementById("status");
+    const projectsEl = document.getElementById("projects");
+
+    const fmtDate = (iso) => new Date(iso).toLocaleDateString(undefined, {
+      year: "numeric", month: "short", day: "numeric"
+    });
+
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=8`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+        return res.json();
+      })
+      .then((repos) => {
+        const selected = repos
+          .filter((repo) => !repo.fork)
+          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
+          .slice(0, 8);
+
+        if (!selected.length) {
+          status.textContent = "No public repositories found yet.";
+          return;
+        }
+
+        status.textContent = `Showing ${selected.length} recent repositories.`;
+
+        selected.forEach((repo) => {
+          const card = document.createElement("article");
+          card.className = "card";
+          card.innerHTML = `
+            <h3 class="chakra-petch-semibold">${repo.name}</h3>
+            <p>${repo.description || "No description available."}</p>
+            <div class="meta">
+              <span>Updated ${fmtDate(repo.pushed_at)}</span>
+              <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
+            </div>
+          `;
+          projectsEl.appendChild(card);
+        });
+      })
+      .catch(() => {
+        status.textContent = "Could not load projects from GitHub API.";
+      });
+  </script>
+</body>
+</html>
