@@ -66,9 +66,9 @@
     }
 
     @keyframes liquidFlow {
-      0% { background-position: 0% 0%, 0% 0%, 0% 42%, 100% 58%, 50% 100%; }
-      50% { background-position: 100% 100%, 100% 100%, 100% 54%, 0% 44%, 52% 0%; }
-      100% { background-position: 0% 0%, 0% 0%, 0% 42%, 100% 58%, 50% 100%; }
+      0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 42%, 100% 58%, 50% 100%; }
+      50% { background-position: 100% 100%, 100% 100%, 100% 100%, 100% 54%, 0% 44%, 52% 0%; }
+      100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 42%, 100% 58%, 50% 100%; }
     }
 
     @keyframes liquidBlobOne {
@@ -116,22 +116,29 @@
       background:
         repeating-linear-gradient(
           0deg,
-          rgba(255, 255, 255, 0.012) 0px,
-          rgba(255, 255, 255, 0.012) 1px,
+          rgba(255, 255, 255, 0.020) 0px,
+          rgba(255, 255, 255, 0.020) 1px,
           rgba(0, 0, 0, 0.0) 1px,
           rgba(0, 0, 0, 0.0) 3px
         ),
         repeating-linear-gradient(
           90deg,
-          rgba(255, 255, 255, 0.008) 0px,
-          rgba(255, 255, 255, 0.008) 1px,
+          rgba(255, 255, 255, 0.015) 0px,
+          rgba(255, 255, 255, 0.015) 1px,
+          rgba(0, 0, 0, 0.0) 1px,
+          rgba(0, 0, 0, 0.0) 4px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.010) 0px,
+          rgba(255, 255, 255, 0.010) 1px,
           rgba(0, 0, 0, 0.0) 1px,
           rgba(0, 0, 0, 0.0) 4px
         ),
         radial-gradient(120% 140% at 18% 12%, rgba(5, 54, 33, 0.44), transparent 58%),
         radial-gradient(110% 130% at 86% 88%, rgba(8, 74, 45, 0.36), transparent 60%),
         linear-gradient(150deg, #000f09 0%, #021a12 36%, #01120c 66%, #000905 100%);
-      background-size: 140px 140px, 170px 170px, 220% 220%, 240% 240%, 320% 320%;
+      background-size: 100px 100px, 130px 130px, 120px 120px, 220% 220%, 240% 240%, 320% 320%;
       animation: liquidFlow 20s ease-in-out infinite;
       line-height: 1.62;
     }
