@@ -138,14 +138,35 @@
 
     .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5); border-color: #2f7358; }
 
-    .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 0; padding: 5px 10px; margin-bottom: 10px; }
+    .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 0; padding: 5px 10px; margin-bottom: 10px; transition: box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
     .overview .tag { background: rgba(52, 146, 255, 0.20); color: #79beff; }
     .deep .tag { background: rgba(255, 144, 46, 0.20); color: #ffb166; }
 
-    .card h2 { margin: 0 0 8px; font-size: 1.4rem; letter-spacing: -0.01em; }
+    .card.overview:hover {
+      border-color: rgba(86, 176, 255, 0.75);
+      box-shadow: 0 14px 34px rgba(22, 121, 242, 0.28);
+    }
+
+
+    .card.overview:hover h2 {
+      color: #f7fbff;
+      text-shadow: 0 0 14px rgba(89, 173, 255, 0.8), 0 0 30px rgba(89, 173, 255, 0.35);
+    }
+
+    .card h2 { margin: 0 0 8px; font-size: 1.4rem; letter-spacing: -0.01em; transition: color 0.2s ease, text-shadow 0.2s ease; }
     .card p { margin: 0; color: var(--muted); }
     .points { margin: 14px 0 0; padding-left: 17px; color: var(--muted); }
     .points li { margin: 6px 0; }
+
+    .card.deep:hover {
+      border-color: rgba(255, 166, 84, 0.78);
+      box-shadow: 0 14px 34px rgba(255, 126, 41, 0.30);
+    }
+
+    .card.deep:hover h2 {
+      color: #fff9f3;
+      text-shadow: 0 0 14px rgba(255, 160, 82, 0.82), 0 0 30px rgba(255, 140, 60, 0.36);
+    }
     .linkline { margin-top: 16px; font-weight: 700; }
     .overview .linkline { color: #72ffc0; }
     .deep .linkline { color: #54d79b; }
@@ -170,7 +191,7 @@
         <span class="tag chakra-petch-medium">Quick</span>
         <span class="tag chakra-petch-medium">For Recruiters</span>
         <span class="tag chakra-petch-medium">Summary</span>
-        <h2 class="chakra-petch-semibold">Overview</h2>
+        <h2 class="chakra-petch-semibold">Quick View</h2>
         <p>Built for recruiters and fast review.</p>
         <ul class="points">
           <li>Recent projects at a glance</li>
