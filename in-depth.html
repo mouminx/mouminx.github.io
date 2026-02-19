@@ -36,49 +36,53 @@
     body::after {
       content: "";
       position: fixed;
-      inset: -24%;
+      inset: -30%;
       z-index: -1;
       pointer-events: none;
-      filter: blur(40px) saturate(120%);
-      opacity: 0.34;
+      filter: blur(52px) saturate(130%);
+      opacity: 0.38;
       transform: translate3d(0, 0, 0);
       background-repeat: no-repeat;
     }
 
     body::before {
       background:
-        radial-gradient(closest-side, rgba(29, 223, 137, 0.30), transparent 72%),
-        radial-gradient(closest-side, rgba(18, 102, 63, 0.26), transparent 70%);
-      background-size: 120% 120%, 140% 140%;
-      background-position: 12% 22%, 82% 78%;
-      animation: liquidBlobOne 18s ease-in-out infinite alternate;
+        radial-gradient(circle at 18% 22%, rgba(10, 95, 58, 0.52), transparent 54%),
+        radial-gradient(circle at 76% 30%, rgba(17, 132, 81, 0.40), transparent 50%),
+        radial-gradient(circle at 48% 76%, rgba(7, 61, 39, 0.54), transparent 58%);
+      background-size: 140% 140%, 160% 160%, 180% 180%;
+      background-position: 14% 24%, 84% 20%, 46% 78%;
+      animation: liquidBlobOne 20s cubic-bezier(0.55, 0.02, 0.23, 0.99) infinite alternate;
     }
 
     body::after {
       background:
-        radial-gradient(closest-side, rgba(57, 255, 166, 0.20), transparent 70%),
-        radial-gradient(closest-side, rgba(13, 71, 44, 0.30), transparent 75%);
-      background-size: 130% 130%, 150% 150%;
-      background-position: 76% 16%, 24% 84%;
-      animation: liquidBlobTwo 22s ease-in-out infinite alternate;
+        radial-gradient(circle at 82% 16%, rgba(12, 122, 74, 0.46), transparent 52%),
+        radial-gradient(circle at 24% 82%, rgba(6, 54, 34, 0.62), transparent 60%),
+        radial-gradient(circle at 58% 58%, rgba(20, 154, 95, 0.26), transparent 48%);
+      background-size: 150% 150%, 170% 170%, 155% 155%;
+      background-position: 78% 18%, 22% 84%, 58% 56%;
+      animation: liquidBlobTwo 24s cubic-bezier(0.45, 0.05, 0.22, 0.98) infinite alternate;
     }
 
     @keyframes liquidFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% { background-position: 0% 42%, 100% 58%, 50% 100%; }
+      50% { background-position: 100% 54%, 0% 44%, 52% 0%; }
+      100% { background-position: 0% 42%, 100% 58%, 50% 100%; }
     }
 
     @keyframes liquidBlobOne {
-      0% { transform: translate(-2%, -1%) scale(1); }
-      50% { transform: translate(3%, 2%) scale(1.08); }
-      100% { transform: translate(-1%, 4%) scale(0.96); }
+      0% { transform: translate(-6%, -4%) scale(1.04) rotate(-3deg); }
+      35% { transform: translate(2%, 5%) scale(1.14) rotate(2deg); }
+      70% { transform: translate(6%, -2%) scale(0.98) rotate(-1deg); }
+      100% { transform: translate(-2%, 6%) scale(1.08) rotate(3deg); }
     }
 
     @keyframes liquidBlobTwo {
-      0% { transform: translate(2%, 1%) scale(1.02); }
-      50% { transform: translate(-3%, -2%) scale(0.95); }
-      100% { transform: translate(1%, -4%) scale(1.08); }
+      0% { transform: translate(4%, 0%) scale(1.06) rotate(2deg); }
+      30% { transform: translate(-5%, -3%) scale(0.94) rotate(-2deg); }
+      65% { transform: translate(3%, 6%) scale(1.12) rotate(1deg); }
+      100% { transform: translate(-2%, -5%) scale(0.98) rotate(-3deg); }
     }
 
     
@@ -109,9 +113,12 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
-      background: linear-gradient(145deg, #010302 0%, #04110c 48%, #020705 100%);
-      background-size: 320% 320%;
-      animation: liquidFlow 16s ease-in-out infinite;
+      background:
+        radial-gradient(120% 140% at 18% 12%, rgba(5, 54, 33, 0.44), transparent 58%),
+        radial-gradient(110% 130% at 86% 88%, rgba(8, 74, 45, 0.36), transparent 60%),
+        linear-gradient(150deg, #000f09 0%, #021a12 36%, #01120c 66%, #000905 100%);
+      background-size: 220% 220%, 240% 240%, 320% 320%;
+      animation: liquidFlow 20s ease-in-out infinite;
       line-height: 1.62;
     }
 
