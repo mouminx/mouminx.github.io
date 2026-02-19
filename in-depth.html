@@ -96,18 +96,6 @@
       mix-blend-mode: screen;
     }
 
-    #blur-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      backdrop-filter: blur(8px) saturate(112%);
-      -webkit-backdrop-filter: blur(8px) saturate(112%);
-      background:
-        radial-gradient(130% 120% at 20% 14%, rgba(2, 18, 12, 0.14), transparent 58%),
-        radial-gradient(120% 130% at 84% 86%, rgba(1, 14, 9, 0.12), transparent 62%);
-    }
-
     @media (prefers-reduced-motion: reduce) {
       body,
       body::before,
@@ -198,7 +186,6 @@
 </head>
 <body>
   <canvas id="node-net" aria-hidden="true"></canvas>
-  <div id="blur-overlay" aria-hidden="true"></div>
   <main class="container">
     <nav>
       <a class="site-link chakra-petch-medium" href="/">Moumin Portfolio</a>
