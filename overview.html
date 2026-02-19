@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moumin | Overview</title>
-  <meta name="description" content="Quick overview portfolio for recruiters and hiring teams." />
+  <title>Moumin | Quick View</title>
+  <meta name="description" content="Quick view portfolio for recruiters and hiring teams." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -26,11 +26,6 @@
     .chakra-petch-medium { font-family: "Chakra Petch", sans-serif; font-weight: 500; font-style: normal; }
     .chakra-petch-semibold { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-style: normal; }
     .chakra-petch-bold { font-family: "Chakra Petch", sans-serif; font-weight: 700; font-style: normal; }
-    .chakra-petch-light-italic { font-family: "Chakra Petch", sans-serif; font-weight: 300; font-style: italic; }
-    .chakra-petch-regular-italic { font-family: "Chakra Petch", sans-serif; font-weight: 400; font-style: italic; }
-    .chakra-petch-medium-italic { font-family: "Chakra Petch", sans-serif; font-weight: 500; font-style: italic; }
-    .chakra-petch-semibold-italic { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-style: italic; }
-    .chakra-petch-bold-italic { font-family: "Chakra Petch", sans-serif; font-weight: 700; font-style: italic; }
 
     body::before,
     body::after {
@@ -102,12 +97,10 @@
       line-height: 1.55;
     }
 
-    .container { max-width: 1080px; margin: 0 auto; padding: 36px 18px 70px; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 36px 18px 70px; }
 
     nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap; }
-
     .site-link { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.01em; }
-
     .links { display: flex; gap: 8px; flex-wrap: wrap; }
 
     .btn {
@@ -124,9 +117,6 @@
 
     .btn:hover { border-color: #2f7358; color: var(--accent); }
 
-    .btn.primary { background: var(--accent); border-color: var(--accent); color: #001109; }
-    .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #001109; }
-
     .hero {
       background: rgba(8, 20, 14, 0.48);
       border: 1px solid rgba(98, 238, 169, 0.24);
@@ -139,11 +129,42 @@
     }
 
     h1 { margin: 0; font-size: clamp(1.95rem, 4vw, 2.7rem); letter-spacing: -0.02em; }
-    .subtitle { color: var(--muted); margin: 10px 0 0; max-width: 65ch; }
+    .subtitle { color: var(--muted); margin: 10px 0 0; max-width: 74ch; }
+
+    .icon-row {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .icon-link {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: rgba(10, 24, 17, 0.44);
+      text-decoration: none;
+      backdrop-filter: blur(12px) saturate(130%);
+      -webkit-backdrop-filter: blur(12px) saturate(130%);
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .icon-link svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .icon-link:hover {
+      border-color: rgba(98, 238, 169, 0.78);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(20, 181, 110, 0.22);
+    }
+
     .section-title { font-size: 1.25rem; margin: 0 0 12px; }
     .status { color: var(--muted); margin: 0 0 12px; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
 
     .card {
       background: rgba(8, 20, 14, 0.48);
@@ -151,17 +172,49 @@
       border-radius: 0;
       padding: 14px;
       box-shadow: var(--shadow);
-      min-height: 168px;
+      min-height: 190px;
       display: flex;
       flex-direction: column;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .card h3 { margin: 0 0 6px; font-size: 1.03rem; color: #dbffec; }
+    .card:hover {
+      border-color: rgba(98, 238, 169, 0.65);
+      box-shadow: 0 14px 34px rgba(20, 181, 110, 0.18);
+    }
+
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; color: #dbffec; }
     .card p { margin: 0; color: var(--muted); flex: 1; }
 
-    .meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; font-size: 0.88rem; color: var(--muted); }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+      margin-bottom: 10px;
+    }
+
+    .tech-tag {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.04);
+      color: #dff7eb;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
 
     .card a { color: var(--accent); font-weight: 600; text-decoration: none; }
     .card a:hover { text-decoration: underline; color: #7dffcb; }
@@ -179,17 +232,28 @@
       <div class="links">
         <a class="btn" href="/">Choose Path</a>
         <a class="btn" href="/in-depth.html">In-Depth View</a>
-        <a class="btn primary" href="https://github.com/mouminx" target="_blank" rel="noreferrer">GitHub</a>
       </div>
     </nav>
 
     <section class="hero">
-      <h1 class="chakra-petch-bold">Overview</h1>
-      <p class="subtitle">A fast skim for recruiters and hiring teams. This view highlights recent work and core tools without long writeups.</p>
+      <h1 class="chakra-petch-bold">Moumin Gani</h1>
+      <p class="subtitle">Software and data engineer with 1+ year of experience designing and implementing scalable internal tools, automation systems, and AI-driven applications. Skilled in Python/Django development, computer vision (OpenCV, Tesseract), and full-stack system design. Adept at building modular architectures that enhance productivity and streamline workflows.</p>
+
+      <div class="icon-row">
+        <a class="icon-link" href="https://github.com/mouminx" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
+        </a>
+        <a class="icon-link" href="/assets/Moumin_Gani_Resume_1.9.pdf" target="_blank" rel="noreferrer" aria-label="Resume PDF">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 12h8v1.5H8V12zm0 3h8v1.5H8V15zm0 3h6v1.5H8V18z"></path></svg>
+        </a>
+        <a class="icon-link" href="https://linkedin.com/in/moumingani" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM5.5 10h2.88v8.5H5.5V10zm4.43 0h2.76v1.16h.04c.38-.73 1.32-1.5 2.73-1.5 2.92 0 3.46 1.92 3.46 4.42v4.42h-2.88v-3.92c0-.93-.02-2.13-1.3-2.13-1.3 0-1.5 1.02-1.5 2.06v3.99H9.93V10z"></path></svg>
+        </a>
+      </div>
     </section>
 
     <section>
-      <h2 class="section-title chakra-petch-semibold">Recent Projects</h2>
+      <h2 class="section-title chakra-petch-semibold">All Projects</h2>
       <p class="status" id="status">Loading projects...</p>
       <div class="grid" id="projects" aria-live="polite"></div>
     </section>
@@ -200,34 +264,122 @@
     const status = document.getElementById("status");
     const projectsEl = document.getElementById("projects");
 
+    const tagPalette = {
+      javascript: { bg: "rgba(245, 223, 77, 0.22)", border: "rgba(245, 223, 77, 0.7)", text: "#fff6ad" },
+      typescript: { bg: "rgba(49, 120, 198, 0.22)", border: "rgba(99, 168, 245, 0.7)", text: "#cfe8ff" },
+      python: { bg: "rgba(53, 114, 165, 0.24)", border: "rgba(90, 155, 209, 0.7)", text: "#d4e9ff" },
+      java: { bg: "rgba(224, 120, 70, 0.24)", border: "rgba(238, 145, 101, 0.7)", text: "#ffe2d2" },
+      cpp: { bg: "rgba(0, 89, 156, 0.24)", border: "rgba(74, 152, 214, 0.7)", text: "#d4ebff" },
+      csharp: { bg: "rgba(106, 52, 142, 0.24)", border: "rgba(155, 102, 193, 0.7)", text: "#f0ddff" },
+      react: { bg: "rgba(97, 218, 251, 0.2)", border: "rgba(130, 224, 247, 0.7)", text: "#d8f9ff" },
+      node: { bg: "rgba(104, 160, 99, 0.24)", border: "rgba(132, 200, 125, 0.7)", text: "#e2f9de" },
+      html: { bg: "rgba(227, 79, 38, 0.24)", border: "rgba(240, 113, 79, 0.7)", text: "#ffe2d6" },
+      css: { bg: "rgba(38, 77, 228, 0.24)", border: "rgba(98, 129, 241, 0.7)", text: "#dbe5ff" },
+      default: { bg: "rgba(29, 223, 137, 0.16)", border: "rgba(98, 238, 169, 0.6)", text: "#dff7eb" }
+    };
+
     const fmtDate = (iso) => new Date(iso).toLocaleDateString(undefined, {
       year: "numeric", month: "short", day: "numeric"
     });
 
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=8`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
-        return res.json();
-      })
-      .then((repos) => {
-        const selected = repos
-          .filter((repo) => !repo.fork)
-          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
-          .slice(0, 8);
+    function normalizeTag(raw) {
+      return raw.toLowerCase().replace(/\s+/g, "-");
+    }
 
-        if (!selected.length) {
+    function inferTags(repo) {
+      const tags = new Set();
+      const text = `${repo.name} ${repo.description || ""}`.toLowerCase();
+
+      if (repo.language) tags.add(repo.language);
+
+      const checks = [
+        ["react", "React"],
+        ["next", "Next.js"],
+        ["node", "Node.js"],
+        ["express", "Express"],
+        ["python", "Python"],
+        ["java", "Java"],
+        ["c++", "C++"],
+        ["csharp", "C#"],
+        ["unity", "Unity"],
+        ["typescript", "TypeScript"],
+        ["javascript", "JavaScript"],
+        ["html", "HTML"],
+        ["css", "CSS"],
+        ["sql", "SQL"],
+        ["api", "API"],
+        ["ai", "AI"],
+        ["ml", "ML"]
+      ];
+
+      checks.forEach(([needle, label]) => {
+        if (text.includes(needle)) tags.add(label);
+      });
+
+      return Array.from(tags).slice(0, 6);
+    }
+
+    function colorForTag(tag) {
+      const t = normalizeTag(tag);
+      if (t.includes("type")) return tagPalette.typescript;
+      if (t.includes("java") && t !== "javascript") return tagPalette.java;
+      if (t.includes("script") && !t.includes("type")) return tagPalette.javascript;
+      if (t.includes("python")) return tagPalette.python;
+      if (t.includes("react") || t.includes("next")) return tagPalette.react;
+      if (t.includes("node") || t.includes("express")) return tagPalette.node;
+      if (t.includes("c++")) return tagPalette.cpp;
+      if (t.includes("c#") || t.includes("csharp") || t.includes("unity")) return tagPalette.csharp;
+      if (t.includes("html")) return tagPalette.html;
+      if (t.includes("css")) return tagPalette.css;
+      return tagPalette.default;
+    }
+
+    async function fetchAllRepos(user) {
+      const all = [];
+      let page = 1;
+
+      while (true) {
+        const res = await fetch(`https://api.github.com/users/${user}/repos?sort=updated&per_page=100&page=${page}`, {
+          headers: { Accept: "application/vnd.github+json" }
+        });
+
+        if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+
+        const batch = await res.json();
+        if (!Array.isArray(batch) || !batch.length) break;
+
+        all.push(...batch);
+        if (batch.length < 100) break;
+        page += 1;
+      }
+
+      return all
+        .filter((repo) => !repo.fork)
+        .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+    }
+
+    fetchAllRepos(username)
+      .then((repos) => {
+        if (!repos.length) {
           status.textContent = "No public repositories found yet.";
           return;
         }
 
-        status.textContent = `Showing ${selected.length} recent repositories.`;
+        status.textContent = `Showing ${repos.length} repositories.`;
 
-        selected.forEach((repo) => {
+        repos.forEach((repo) => {
+          const tags = inferTags(repo);
+          const tagHtml = tags.map((tag) => {
+            const c = colorForTag(tag);
+            return `<span class="tech-tag" style="background:${c.bg};border-color:${c.border};color:${c.text};">${tag}</span>`;
+          }).join("");
+
           const card = document.createElement("article");
           card.className = "card";
           card.innerHTML = `
             <h3 class="chakra-petch-semibold">${repo.name}</h3>
             <p>${repo.description || "No description available."}</p>
+            <div class="tag-row">${tagHtml}</div>
             <div class="meta">
               <span>Updated ${fmtDate(repo.pushed_at)}</span>
               <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
