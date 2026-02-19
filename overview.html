@@ -655,7 +655,7 @@
         const card = document.createElement("article");
         card.className = `card${expandedRepoId === repo.id ? " is-expanded-source" : ""}`;
         card.innerHTML = `
-          <button class="expand-btn" type="button" data-id="${repo.id}">Expand this card</button>
+          <button class="expand-btn" type="button" data-id="${repo.id}">Details</button>
           <h3 class="chakra-petch-semibold">${repo.name}</h3>
           <div class="tag-row">${tagHtmlFor(tags)}</div>
           <div class="meta">
