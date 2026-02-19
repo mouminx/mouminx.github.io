@@ -85,7 +85,13 @@
       100% { transform: translate(-2%, -5%) scale(0.98) rotate(-3deg); }
     }
 
-    
+    @keyframes grainShift {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-1%, 1%); }
+      50% { transform: translate(1%, -1%); }
+      75% { transform: translate(1%, 1%); }
+      100% { transform: translate(0, 0); }
+    }
 
     #node-net {
       position: fixed;
@@ -98,10 +104,26 @@
       mix-blend-mode: screen;
     }
 
+    #grain-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.34;
+      mix-blend-mode: overlay;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n1)' opacity='1'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='72' height='72' filter='url(%23n2)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 120px 120px, 72px 72px;
+      filter: contrast(175%) brightness(84%);
+      animation: grainShift 0.9s steps(2) infinite;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       body,
       body::before,
       body::after { animation: none !important; }
+      #grain-layer { animation: none !important; }
     }
 
     body {
@@ -143,7 +165,7 @@
       line-height: 1.62;
     }
 
-    .container { max-width: 980px; margin: 0 auto; padding: 36px 18px 70px; }
+    .container { max-width: 980px; margin: 0 auto; padding: 36px 18px 70px; position: relative; z-index: 1; }
 
     nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap; }
 
@@ -209,6 +231,7 @@
 </head>
 <body>
   <canvas id="node-net" aria-hidden="true"></canvas>
+  <div id="grain-layer" aria-hidden="true"></div>
   <main class="container">
     <nav>
       <a class="site-link chakra-petch-medium" href="/">Moumin Portfolio</a>
