@@ -76,8 +76,6 @@
       100% { transform: translate(1%, -4%) scale(1.08); }
     }
 
-    
-
     #node-net {
       position: fixed;
       inset: 0;
@@ -182,22 +180,57 @@
       text-transform: uppercase;
       color: #ecfff5;
     }
+
     .status { color: var(--muted); margin: 0 0 12px; }
+
+    #expanded-slot { margin: 10px 0 18px; }
+
+    .expanded-card {
+      background: rgba(10, 26, 18, 0.62);
+      border: 1px solid rgba(119, 238, 180, 0.52);
+      border-radius: 0;
+      padding: 16px;
+      box-shadow: 0 18px 42px rgba(16, 181, 117, 0.20);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+    }
+
+    .expanded-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .collapse-btn {
+      border: 1px solid rgba(119, 238, 180, 0.52);
+      background: rgba(12, 31, 21, 0.45);
+      color: #defeee;
+      font: inherit;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .expanded-title { margin: 0; color: #f1fff8; }
+    .expanded-body { margin: 10px 0 0; color: #b7d8c9; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; perspective: 1100px; }
 
     .card {
+      position: relative;
       background: rgba(8, 20, 14, 0.48);
       border: 1px solid rgba(98, 238, 169, 0.24);
       border-radius: 0;
       padding: 14px;
       box-shadow: var(--shadow);
-      min-height: 190px;
+      min-height: 155px;
       display: flex;
       flex-direction: column;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease-out;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease-out, opacity 0.2s ease;
       transform-style: preserve-3d;
       will-change: transform;
     }
@@ -207,15 +240,19 @@
       box-shadow: 0 14px 34px rgba(20, 181, 110, 0.18);
     }
 
-    .card h3 { margin: 0 0 6px; font-size: 1.05rem; color: #dbffec; }
-    .card p { margin: 0; color: var(--muted); flex: 1; }
+    .card.is-expanded-source {
+      opacity: 0.42;
+      filter: grayscale(0.45);
+      border-color: rgba(180, 190, 184, 0.5);
+    }
+
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; color: #dbffec; }
 
     .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 12px;
-      margin-bottom: 10px;
+      margin: 2px 0 0;
     }
 
     .tech-tag {
@@ -236,14 +273,40 @@
       margin-top: auto;
       font-size: 0.82rem;
       color: var(--muted);
+      padding-top: 10px;
     }
 
     .card a { color: var(--accent); font-weight: 600; text-decoration: none; }
     .card a:hover { text-decoration: underline; color: #7dffcb; }
 
+    .expand-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 1px solid rgba(98, 238, 169, 0.52);
+      background: rgba(8, 20, 14, 0.78);
+      color: #defeee;
+      font: inherit;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .card:hover .expand-btn,
+    .card:focus-within .expand-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 700px) {
       .container { padding-top: 24px; }
       .hero { padding: 22px; }
+      .expand-btn { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -277,12 +340,12 @@
     <section class="projects-section">
       <h2 class="section-title chakra-petch-semibold">Projects Showcase</h2>
       <p class="status" id="status">Loading projects...</p>
+      <div id="expanded-slot"></div>
       <div class="grid" id="projects" aria-live="polite"></div>
     </section>
   </main>
 
   <script>
-
     function initNodeNet() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const canvas = document.getElementById("node-net");
@@ -325,7 +388,6 @@
           const a = nodes[i];
           a.x += a.vx;
           a.y += a.vy;
-
           if (a.x < -8 || a.x > width + 8) a.vx *= -1;
           if (a.y < -8 || a.y > height + 8) a.vy *= -1;
 
@@ -363,6 +425,7 @@
     const username = "mouminx";
     const status = document.getElementById("status");
     const projectsEl = document.getElementById("projects");
+    const expandedSlot = document.getElementById("expanded-slot");
 
     const tagPalette = {
       javascript: { bg: "rgba(245, 223, 77, 0.22)", border: "rgba(245, 223, 77, 0.7)", text: "#fff6ad" },
@@ -389,27 +452,13 @@
     function inferTags(repo) {
       const tags = new Set();
       const text = `${repo.name} ${repo.description || ""}`.toLowerCase();
-
       if (repo.language) tags.add(repo.language);
 
       const checks = [
-        ["react", "React"],
-        ["next", "Next.js"],
-        ["node", "Node.js"],
-        ["express", "Express"],
-        ["python", "Python"],
-        ["java", "Java"],
-        ["c++", "C++"],
-        ["csharp", "C#"],
-        ["unity", "Unity"],
-        ["typescript", "TypeScript"],
-        ["javascript", "JavaScript"],
-        ["html", "HTML"],
-        ["css", "CSS"],
-        ["sql", "SQL"],
-        ["api", "API"],
-        ["ai", "AI"],
-        ["ml", "ML"]
+        ["react", "React"], ["next", "Next.js"], ["node", "Node.js"], ["express", "Express"],
+        ["python", "Python"], ["java", "Java"], ["c++", "C++"], ["csharp", "C#"],
+        ["unity", "Unity"], ["typescript", "TypeScript"], ["javascript", "JavaScript"],
+        ["html", "HTML"], ["css", "CSS"], ["sql", "SQL"], ["api", "API"], ["ai", "AI"], ["ml", "ML"]
       ];
 
       checks.forEach(([needle, label]) => {
@@ -439,7 +488,6 @@
 
     function attachTilt(card) {
       if (!tiltEnabled || !motionOK) return;
-
       const maxTilt = 7;
       let frame = null;
       let targetX = 0;
@@ -474,7 +522,6 @@
         const res = await fetch(`https://api.github.com/users/${user}/repos?sort=updated&per_page=100&page=${page}`, {
           headers: { Accept: "application/vnd.github+json" }
         });
-
         if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
 
         const batch = await res.json();
@@ -485,46 +532,106 @@
         page += 1;
       }
 
-      return all
-        .filter((repo) => !repo.fork)
-        .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+      return all.filter((repo) => !repo.fork).sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
     }
+
+    let reposData = [];
+    let expandedRepoId = null;
+
+    function tagHtmlFor(tags) {
+      return tags.map((tag) => {
+        const c = colorForTag(tag);
+        return `<span class="tech-tag" style="background:${c.bg};border-color:${c.border};color:${c.text};">${tag}</span>`;
+      }).join("");
+    }
+
+    function renderExpanded(repo) {
+      if (!repo) {
+        expandedSlot.innerHTML = "";
+        return;
+      }
+
+      const tags = inferTags(repo);
+      expandedSlot.innerHTML = `
+        <article class="expanded-card">
+          <div class="expanded-head">
+            <h3 class="expanded-title chakra-petch-bold">${repo.name}</h3>
+            <button class="collapse-btn" id="collapse-expanded" type="button">Collapse</button>
+          </div>
+          <div class="tag-row">${tagHtmlFor(tags)}</div>
+          <p class="expanded-body">
+            Expanded card placeholder: this area will contain deeper context, architecture decisions,
+            implementation notes, and outcomes for <strong>${repo.name}</strong>. You can replace this
+            text with your project-specific writeup when ready.
+          </p>
+          <p class="expanded-body">
+            Additional placeholder: key challenges solved, tradeoffs made, and what you would improve in v2.
+          </p>
+          <div class="meta">
+            <span>Updated ${fmtDate(repo.pushed_at)}</span>
+            <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
+          </div>
+        </article>
+      `;
+
+      const collapse = document.getElementById("collapse-expanded");
+      collapse?.addEventListener("click", () => {
+        expandedRepoId = null;
+        renderAll();
+      });
+    }
+
+    function renderGrid() {
+      projectsEl.innerHTML = "";
+
+      reposData.forEach((repo) => {
+        const tags = inferTags(repo);
+        const card = document.createElement("article");
+        card.className = `card${expandedRepoId === repo.id ? " is-expanded-source" : ""}`;
+        card.innerHTML = `
+          <button class="expand-btn" type="button" data-id="${repo.id}">Expand this card</button>
+          <h3 class="chakra-petch-semibold">${repo.name}</h3>
+          <div class="tag-row">${tagHtmlFor(tags)}</div>
+          <div class="meta">
+            <span>Updated ${fmtDate(repo.pushed_at)}</span>
+            <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
+          </div>
+        `;
+        projectsEl.appendChild(card);
+        attachTilt(card);
+      });
+    }
+
+    function renderAll() {
+      const expanded = reposData.find((r) => r.id === expandedRepoId) || null;
+      renderExpanded(expanded);
+      renderGrid();
+    }
+
+    projectsEl.addEventListener("click", (event) => {
+      const btn = event.target.closest(".expand-btn");
+      if (!btn) return;
+      const id = Number(btn.dataset.id);
+      expandedRepoId = expandedRepoId === id ? null : id;
+      renderAll();
+    });
 
     fetchAllRepos(username)
       .then((repos) => {
-        if (!repos.length) {
+        reposData = repos;
+        if (!reposData.length) {
           status.textContent = "No public repositories found yet.";
           return;
         }
 
-        status.textContent = `Showing ${repos.length} repositories.`;
-
-        repos.forEach((repo) => {
-          const tags = inferTags(repo);
-          const tagHtml = tags.map((tag) => {
-            const c = colorForTag(tag);
-            return `<span class="tech-tag" style="background:${c.bg};border-color:${c.border};color:${c.text};">${tag}</span>`;
-          }).join("");
-
-          const card = document.createElement("article");
-          card.className = "card";
-          card.innerHTML = `
-            <h3 class="chakra-petch-semibold">${repo.name}</h3>
-            <p>${repo.description || "No description available."}</p>
-            <div class="tag-row">${tagHtml}</div>
-            <div class="meta">
-              <span>Updated ${fmtDate(repo.pushed_at)}</span>
-              <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
-            </div>
-          `;
-          projectsEl.appendChild(card);
-          attachTilt(card);
-        });
+        status.textContent = `Showing ${reposData.length} repositories.`;
+        renderAll();
       })
       .catch(() => {
         status.textContent = "Could not load projects from GitHub API.";
       });
-      initNodeNet();
+
+    initNodeNet();
   </script>
 </body>
 </html>
