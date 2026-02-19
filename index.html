@@ -212,7 +212,9 @@
   <script>
     const tiltEnabled = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-    if (tiltEnabled) {
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (tiltEnabled && motionOK) {
       const cards = document.querySelectorAll(".card");
       cards.forEach((card) => {
         const maxTilt = 7;
@@ -220,7 +222,7 @@
         let targetX = 0;
         let targetY = 0;
 
-        card.addEventListener("mousemove", (event) => {
+        card.addEventListener("pointermove", (event) => {
           const rect = card.getBoundingClientRect();
           const px = (event.clientX - rect.left) / rect.width;
           const py = (event.clientY - rect.top) / rect.height;
@@ -234,7 +236,7 @@
           });
         });
 
-        card.addEventListener("mouseleave", () => {
+        card.addEventListener("pointerleave", () => {
           if (frame) cancelAnimationFrame(frame);
           frame = null;
           card.style.transform = "rotateX(0deg) rotateY(0deg)";
