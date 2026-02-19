@@ -66,9 +66,9 @@
     }
 
     @keyframes liquidFlow {
-      0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 42%, 100% 58%, 50% 100%; }
-      50% { background-position: 100% 100%, 100% 100%, 100% 100%, 100% 54%, 0% 44%, 52% 0%; }
-      100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 42%, 100% 58%, 50% 100%; }
+      0% { background-position: 0% 42%, 100% 58%, 50% 100%; }
+      50% { background-position: 100% 54%, 0% 44%, 52% 0%; }
+      100% { background-position: 0% 42%, 100% 58%, 50% 100%; }
     }
 
     @keyframes liquidBlobOne {
@@ -85,14 +85,6 @@
       100% { transform: translate(-2%, -5%) scale(0.98) rotate(-3deg); }
     }
 
-    @keyframes grainShift {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(-1%, 1%); }
-      50% { transform: translate(1%, -1%); }
-      75% { transform: translate(1%, 1%); }
-      100% { transform: translate(0, 0); }
-    }
-
     #node-net {
       position: fixed;
       inset: 0;
@@ -104,26 +96,22 @@
       mix-blend-mode: screen;
     }
 
-    #grain-layer {
+    #blur-overlay {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.34;
-      mix-blend-mode: overlay;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n1)' opacity='1'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='72' height='72' filter='url(%23n2)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 120px 120px, 72px 72px;
-      filter: contrast(175%) brightness(84%);
-      animation: grainShift 0.9s steps(2) infinite;
+      backdrop-filter: blur(8px) saturate(112%);
+      -webkit-backdrop-filter: blur(8px) saturate(112%);
+      background:
+        radial-gradient(130% 120% at 20% 14%, rgba(2, 18, 12, 0.14), transparent 58%),
+        radial-gradient(120% 130% at 84% 86%, rgba(1, 14, 9, 0.12), transparent 62%);
     }
 
     @media (prefers-reduced-motion: reduce) {
       body,
       body::before,
       body::after { animation: none !important; }
-      #grain-layer { animation: none !important; }
     }
 
     body {
@@ -136,31 +124,10 @@
       overflow-x: hidden;
       isolation: isolate;
       background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.020) 0px,
-          rgba(255, 255, 255, 0.020) 1px,
-          rgba(0, 0, 0, 0.0) 1px,
-          rgba(0, 0, 0, 0.0) 3px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.015) 0px,
-          rgba(255, 255, 255, 0.015) 1px,
-          rgba(0, 0, 0, 0.0) 1px,
-          rgba(0, 0, 0, 0.0) 4px
-        ),
-        repeating-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.010) 0px,
-          rgba(255, 255, 255, 0.010) 1px,
-          rgba(0, 0, 0, 0.0) 1px,
-          rgba(0, 0, 0, 0.0) 4px
-        ),
         radial-gradient(120% 140% at 18% 12%, rgba(5, 54, 33, 0.44), transparent 58%),
         radial-gradient(110% 130% at 86% 88%, rgba(8, 74, 45, 0.36), transparent 60%),
         linear-gradient(150deg, #000f09 0%, #021a12 36%, #01120c 66%, #000905 100%);
-      background-size: 100px 100px, 130px 130px, 120px 120px, 220% 220%, 240% 240%, 320% 320%;
+      background-size: 220% 220%, 240% 240%, 320% 320%;
       animation: liquidFlow 20s ease-in-out infinite;
       line-height: 1.62;
     }
@@ -231,7 +198,7 @@
 </head>
 <body>
   <canvas id="node-net" aria-hidden="true"></canvas>
-  <div id="grain-layer" aria-hidden="true"></div>
+  <div id="blur-overlay" aria-hidden="true"></div>
   <main class="container">
     <nav>
       <a class="site-link chakra-petch-medium" href="/">Moumin Portfolio</a>
