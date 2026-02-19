@@ -214,7 +214,17 @@
     }
 
     .expanded-title { margin: 0; color: #f1fff8; }
-    .expanded-body { margin: 10px 0 0; color: #b7d8c9; }
+    .expanded-pitch {
+      margin: 10px 0 0;
+      color: #d6efe3;
+      line-height: 1.5;
+    }
+    .expanded-value {
+      margin: 8px 0 0;
+      color: #b7d8c9;
+      line-height: 1.55;
+    }
+    .expanded-value strong { color: #effff8; font-weight: 700; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; perspective: 1100px; }
 
@@ -249,6 +259,13 @@
     .card h3 { margin: 0 0 8px; font-size: 1.05rem; color: #dbffec; }
 
     .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 2px 0 0;
+    }
+
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
@@ -538,11 +555,40 @@
     let reposData = [];
     let expandedRepoId = null;
 
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
     function tagHtmlFor(tags) {
       return tags.map((tag) => {
         const c = colorForTag(tag);
-        return `<span class="tech-tag" style="background:${c.bg};border-color:${c.border};color:${c.text};">${tag}</span>`;
+        return `<span class="tech-tag" style="background:${c.bg};border-color:${c.border};color:${c.text};">${escapeHtml(tag)}</span>`;
       }).join("");
+    }
+
+    const repoOverrides = {
+      "forest-rogue-like": {
+        title: "Forest Rogue-like Engine",
+        tags: ["C#", ".NET", "OpenTK", "ECS", "Procedural Generation", "Isometric"],
+        pitch: "Custom 2D rogue-like engine built from scratch with C#/.NET and OpenTK, using ECS for scalable gameplay systems.",
+        value: "Built without Unity/Unreal, demonstrating <strong>systems programming</strong>, <strong>custom rendering pipeline design</strong>, <strong>procedural generation</strong>, and <strong>game-loop architecture</strong> skills."
+      }
+    };
+
+    function oneLinePitch(repo) {
+      return repoOverrides[repo.name]?.pitch
+        || repo.description
+        || "Focused engineering project built with a modular architecture and practical delivery constraints.";
+    }
+
+    function technicalValue(repo) {
+      return repoOverrides[repo.name]?.value
+        || "Highlights <strong>architecture ownership</strong>, <strong>end-to-end delivery</strong>, and <strong>technical execution</strong>.";
     }
 
     function renderExpanded(repo) {
@@ -551,26 +597,18 @@
         return;
       }
 
-      const tags = inferTags(repo);
+      const override = repoOverrides[repo.name] || {};
+      const title = override.title || repo.name;
+      const tags = override.tags || inferTags(repo);
       expandedSlot.innerHTML = `
         <article class="expanded-card">
           <div class="expanded-head">
-            <h3 class="expanded-title chakra-petch-bold">${repo.name}</h3>
+            <h3 class="expanded-title chakra-petch-bold">${escapeHtml(title)}</h3>
             <button class="collapse-btn" id="collapse-expanded" type="button">Collapse</button>
           </div>
-          <div class="tag-row">${tagHtmlFor(tags)}</div>
-          <p class="expanded-body">
-            Expanded card placeholder: this area will contain deeper context, architecture decisions,
-            implementation notes, and outcomes for <strong>${repo.name}</strong>. You can replace this
-            text with your project-specific writeup when ready.
-          </p>
-          <p class="expanded-body">
-            Additional placeholder: key challenges solved, tradeoffs made, and what you would improve in v2.
-          </p>
-          <div class="meta">
-            <span>Updated ${fmtDate(repo.pushed_at)}</span>
-            <a href="${repo.html_url}" target="_blank" rel="noreferrer">Open</a>
-          </div>
+          <div class="tags">${tagHtmlFor(tags)}</div>
+          <p class="expanded-pitch">${escapeHtml(oneLinePitch(repo))}</p>
+          <p class="expanded-value">${technicalValue(repo)}</p>
         </article>
       `;
 
