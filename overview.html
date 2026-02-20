@@ -605,6 +605,13 @@
       }).join("");
     }
 
+    const towerDefenseOverride = {
+      title: "Tower Defense Systems Engine",
+      tags: ["C#", ".NET", "Game Loop", "Pathfinding", "Wave System", "AI Targeting", "Balancing", "Performance"],
+      pitch: "Wave-based tower defense engine with modular enemy pathing, targeting logic, and scalable combat systems tuned for real-time strategy gameplay.",
+      value: "Demonstrates <strong>game systems architecture</strong>, <strong>pathing and targeting algorithms</strong>, <strong>balance and progression design</strong>, and <strong>performance-aware real-time simulation</strong>."
+    };
+
     const repoOverrides = {
       "forest-rogue-like": {
         title: "Forest Rogue-like Engine",
@@ -617,17 +624,25 @@
         tags: ["Python", "FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "API Design", "Decision Engine", "Full-Stack Integration"],
         pitch: "Real-time ARPG loot evaluator that captures item tooltips with OCR, normalizes affixes, and instantly recommends KEEP, SALVAGE, or SELL based on build profiles and leveling priorities.",
         value: "Demonstrates <strong>OCR + image preprocessing pipelines</strong>, <strong>real-time API and overlay integration</strong>, and <strong>tested decision logic</strong> with mocked endpoints and edge-case validation."
-      }
+      },
+      "tower-defense": towerDefenseOverride,
+      "tower-defense-game": towerDefenseOverride,
+      "towerdefense": towerDefenseOverride
     };
 
+    function getRepoOverride(repo) {
+      if (!repo?.name) return null;
+      return repoOverrides[repo.name] || repoOverrides[repo.name.toLowerCase()] || null;
+    }
+
     function oneLinePitch(repo) {
-      return repoOverrides[repo.name]?.pitch
+      return getRepoOverride(repo)?.pitch
         || repo.description
         || "Focused engineering project built with a modular architecture and practical delivery constraints.";
     }
 
     function technicalValue(repo) {
-      return repoOverrides[repo.name]?.value
+      return getRepoOverride(repo)?.value
         || "Highlights <strong>architecture ownership</strong>, <strong>end-to-end delivery</strong>, and <strong>technical execution</strong>.";
     }
 
@@ -637,7 +652,7 @@
         return;
       }
 
-      const override = repoOverrides[repo.name] || {};
+      const override = getRepoOverride(repo) || {};
       const title = override.title || repo.name;
       const tags = override.tags || inferTags(repo);
       expandedSlot.innerHTML = `
