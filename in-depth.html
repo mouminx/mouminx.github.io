@@ -451,6 +451,22 @@
           { title: "Multi-Day Event Planner", caption: "Nikkah/Mehndi/Shaadi/Walima scheduling and guest segmentation placeholder." },
           { title: "Family Collaboration + Permissions", caption: "Role-based editing and shared planning workspace placeholder." }
         ]
+      },
+      {
+        id: "megabonk-ml",
+        title: "Megabonk RL Agent - Hybrid AI Game Playing System",
+        summary: "Production-style reinforcement learning system that trains an autonomous agent to play Megabonk with hybrid learned and hardcoded control.",
+        languages: ["Python"],
+        technologies: ["PPO", "Stable-Baselines3", "Gymnasium", "dxcam", "Tesseract OCR", "TensorBoard", "Curriculum Learning", "Hybrid AI"],
+        problem: "Pure end-to-end RL struggled with game-specific discrete states like menu handling, shop logic, and recovery flows, while noisy OCR signals destabilized reward quality.",
+        vision: "Build a robust real-time agent architecture where RL handles continuous movement and positioning while deterministic logic handles brittle UI/game-state transitions.",
+        solution: "Implemented a hybrid PPO + heuristic controller with 58 FPS screen capture, frame stacking, OCR validation filters, curriculum-based reward shaping, and checkpointed training diagnostics over long runs.",
+        next: "Expand with richer boss-phase policies, automated hyperparameter sweeps, and stronger state-estimation signals to reduce heuristic dependency over time.",
+        media: [
+          { title: "Live Training Run", caption: "58 FPS capture + action loop and reward traces placeholder." },
+          { title: "Hybrid Decision Flow", caption: "RL movement policy plus hardcoded menu/item state machine placeholder." },
+          { title: "Reward & OCR Diagnostics", caption: "Noise filtering, delta clipping, and curriculum weighting charts placeholder." }
+        ]
       }
     ];
 
