@@ -408,6 +408,21 @@
           { title: "Targeting Logic Diagram", caption: "Priority rules and engagement range visualization." },
           { title: "Performance Profile Panel", caption: "Late-wave frame-cost and entity count snapshot." }
         ]
+      },
+      {
+        id: "tailored-io",
+        title: "Resume Tailor - Local AI Resume Adjuster",
+        summary: "Local-first resume tailoring workflow using FastAPI and Ollama to adapt resume content to job descriptions without cloud APIs.",
+        tags: ["Python", "FastAPI", "Ollama", "Prompt Engineering", "pdfplumber", "WeasyPrint", "Pydantic", "Jinja2"],
+        problem: "Generic resumes underperform against role-specific requirements, but users often cannot share personal data with cloud AI tools due to privacy and trust constraints.",
+        vision: "Build a privacy-first assistant that performs constrained, fact-grounded resume tailoring locally with structured outputs and predictable formatting.",
+        solution: "Implemented a modular pipeline for PDF extraction, schema-driven LLM prompting, constraint-aware rewrite logic, and deterministic PDF regeneration via template rendering.",
+        next: "Add richer template variants, advanced constraint presets, and local evaluation metrics to score tailoring quality before exporting.",
+        media: [
+          { title: "Tailoring Flow Walkthrough", caption: "Upload + job description + constraint selection screen placeholder." },
+          { title: "Schema-Constrained Output", caption: "Validated structured resume JSON and rule application preview." },
+          { title: "Generated PDF Preview", caption: "Before/after layout comparison and export panel placeholder." }
+        ]
       }
     ];
 
