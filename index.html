@@ -32,53 +32,87 @@
     .chakra-petch-semibold-italic { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-style: italic; }
     .chakra-petch-bold-italic { font-family: "Chakra Petch", sans-serif; font-weight: 700; font-style: italic; }
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: -24%;
-      z-index: -1;
-      pointer-events: none;
-      filter: blur(40px) saturate(120%);
-      opacity: 0.34;
-      transform: translate3d(0, 0, 0);
-      background-repeat: no-repeat;
-    }
-
-    body::before {
-      background:
-        radial-gradient(closest-side, rgba(29, 223, 137, 0.30), transparent 72%),
-        radial-gradient(closest-side, rgba(18, 102, 63, 0.26), transparent 70%);
-      background-size: 120% 120%, 140% 140%;
-      background-position: 12% 22%, 82% 78%;
-      animation: liquidBlobOne 18s ease-in-out infinite alternate;
-    }
-
-    body::after {
-      background:
-        radial-gradient(closest-side, rgba(57, 255, 166, 0.20), transparent 70%),
-        radial-gradient(closest-side, rgba(13, 71, 44, 0.30), transparent 75%);
-      background-size: 130% 130%, 150% 150%;
-      background-position: 76% 16%, 24% 84%;
-      animation: liquidBlobTwo 22s ease-in-out infinite alternate;
-    }
-
     @keyframes liquidFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    @keyframes liquidBlobOne {
-      0% { transform: translate(-2%, -1%) scale(1); }
-      50% { transform: translate(3%, 2%) scale(1.08); }
-      100% { transform: translate(-1%, 4%) scale(0.96); }
+    @keyframes blobDriftA {
+      0% { transform: translate(-10%, -8%) scale(1.0); }
+      50% { transform: translate(8%, 6%) scale(1.12); }
+      100% { transform: translate(-6%, 10%) scale(0.95); }
     }
 
-    @keyframes liquidBlobTwo {
-      0% { transform: translate(2%, 1%) scale(1.02); }
-      50% { transform: translate(-3%, -2%) scale(0.95); }
-      100% { transform: translate(1%, -4%) scale(1.08); }
+    @keyframes blobDriftB {
+      0% { transform: translate(9%, 7%) scale(1.06); }
+      50% { transform: translate(-8%, -10%) scale(0.92); }
+      100% { transform: translate(7%, -6%) scale(1.1); }
+    }
+
+    @keyframes blobDriftC {
+      0% { transform: translate(0%, -8%) scale(1.04); }
+      50% { transform: translate(-9%, 9%) scale(1.14); }
+      100% { transform: translate(10%, -4%) scale(0.94); }
+    }
+
+    #liquid-layer {
+      position: fixed;
+      inset: -14%;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(48px) saturate(125%);
+    }
+
+    .liquid-blob {
+      position: absolute;
+      width: min(52vw, 640px);
+      height: min(52vw, 640px);
+      border-radius: 50%;
+      opacity: 0.48;
+      mix-blend-mode: screen;
+    }
+
+    .liquid-blob:nth-child(1) {
+      left: -8%;
+      top: -6%;
+      background: radial-gradient(circle at 35% 35%, rgba(27, 188, 118, 0.66), rgba(14, 82, 52, 0) 72%);
+      animation: blobDriftA 34s ease-in-out infinite alternate;
+    }
+
+    .liquid-blob:nth-child(2) {
+      right: -10%;
+      top: -8%;
+      background: radial-gradient(circle at 62% 32%, rgba(35, 167, 111, 0.58), rgba(12, 68, 44, 0) 74%);
+      animation: blobDriftB 40s ease-in-out infinite alternate;
+    }
+
+    .liquid-blob:nth-child(3) {
+      left: 24%;
+      top: 2%;
+      background: radial-gradient(circle at 50% 40%, rgba(14, 129, 80, 0.54), rgba(8, 52, 33, 0) 72%);
+      animation: blobDriftC 36s ease-in-out infinite alternate;
+    }
+
+    .liquid-blob:nth-child(4) {
+      left: -6%;
+      bottom: -12%;
+      background: radial-gradient(circle at 42% 58%, rgba(20, 161, 103, 0.62), rgba(10, 65, 41, 0) 73%);
+      animation: blobDriftB 38s ease-in-out infinite alternate-reverse;
+    }
+
+    .liquid-blob:nth-child(5) {
+      right: -8%;
+      bottom: -10%;
+      background: radial-gradient(circle at 58% 62%, rgba(18, 121, 77, 0.60), rgba(7, 45, 29, 0) 72%);
+      animation: blobDriftA 42s ease-in-out infinite alternate-reverse;
+    }
+
+    .liquid-blob:nth-child(6) {
+      left: 34%;
+      bottom: -14%;
+      background: radial-gradient(circle at 50% 50%, rgba(22, 147, 93, 0.56), rgba(9, 56, 36, 0) 74%);
+      animation: blobDriftC 46s ease-in-out infinite alternate-reverse;
     }
 
     
@@ -90,8 +124,9 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.26;
+      opacity: 0.40;
       mix-blend-mode: screen;
+      filter: drop-shadow(0 0 10px rgba(66, 255, 176, 0.35));
     }
 
     #grain-layer {
@@ -107,8 +142,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       body,
-      body::before,
-      body::after { animation: none !important; }
+      .liquid-blob { animation: none !important; }
     }
 
     body {
@@ -120,9 +154,9 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
-      background: linear-gradient(145deg, #010302 0%, #04110c 48%, #020705 100%);
-      background-size: 320% 320%;
-      animation: liquidFlow 16s ease-in-out infinite;
+      background: linear-gradient(150deg, #000604 0%, #010d09 34%, #021710 64%, #010907 100%);
+      background-size: 340% 340%;
+      animation: liquidFlow 24s ease-in-out infinite;
       line-height: 1.55;
       display: grid;
       place-items: center;
@@ -201,6 +235,14 @@
   </style>
 </head>
 <body>
+  <div id="liquid-layer" aria-hidden="true">
+    <div class="liquid-blob"></div>
+    <div class="liquid-blob"></div>
+    <div class="liquid-blob"></div>
+    <div class="liquid-blob"></div>
+    <div class="liquid-blob"></div>
+    <div class="liquid-blob"></div>
+  </div>
   <canvas id="node-net" aria-hidden="true"></canvas>
   <div id="grain-layer" aria-hidden="true"></div>
   <main class="frame">
@@ -294,6 +336,8 @@
             const alpha = (1 - d / maxDist) * 0.5;
             ctx.strokeStyle = `rgba(94, 214, 159, ${alpha.toFixed(3)})`;
             ctx.lineWidth = 1;
+            ctx.shadowColor = "rgba(99, 255, 181, 0.55)";
+            ctx.shadowBlur = 9;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -303,10 +347,13 @@
 
         for (const n of nodes) {
           ctx.fillStyle = "rgba(210, 255, 236, 0.65)";
+          ctx.shadowColor = "rgba(120, 255, 194, 0.8)";
+          ctx.shadowBlur = 12;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
           ctx.fill();
         }
+        ctx.shadowBlur = 0;
 
         requestAnimationFrame(draw);
       }
