@@ -196,29 +196,139 @@
 
     h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -0.02em; }
     .subtitle { margin-top: 10px; color: var(--muted); max-width: 70ch; }
-    .section-title { margin: 18px 0 10px; font-size: 1.25rem; }
+    .section-title { margin: 18px 0 12px; font-size: 1.25rem; }
 
-    .project {
+    .cards-stack {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .case-card {
       border: 1px solid rgba(98, 238, 169, 0.22);
       border-radius: 0;
       background: rgba(10, 24, 17, 0.44);
       box-shadow: var(--shadow);
       padding: 16px;
-      margin-top: 12px;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
 
-    .project h3 { margin: 0 0 6px; color: #dbffec; }
-    .project p { margin: 0; color: var(--muted); }
-    .label { margin-top: 10px; color: var(--text); font-weight: 700; font-size: 0.92rem; }
+    .case-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
 
-    .project a { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 600; text-decoration: none; }
-    .project a:hover { text-decoration: underline; color: #7dffcb; }
+    .case-title-wrap h3 { margin: 0; color: #dbffec; font-size: 1.08rem; }
+    .case-summary { margin: 8px 0 0; color: var(--muted); }
+
+    .case-toggle {
+      border: 1px solid rgba(98, 238, 169, 0.52);
+      background: rgba(8, 20, 14, 0.78);
+      color: #defeee;
+      font: inherit;
+      font-size: 0.76rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .case-body {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 14px;
+      border-top: 1px solid rgba(98, 238, 169, 0.18);
+      padding-top: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0 0 12px;
+    }
+
+    .tech-tag {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border: 1px solid rgba(98, 238, 169, 0.36);
+      background: rgba(29, 223, 137, 0.12);
+      color: #dff7eb;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .case-block + .case-block { margin-top: 10px; }
+    .case-label {
+      margin: 0 0 3px;
+      color: #ecfff5;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .case-text { margin: 0; color: var(--muted); }
+
+    .media-card {
+      border: 1px solid rgba(98, 238, 169, 0.24);
+      background: rgba(7, 16, 12, 0.6);
+      padding: 10px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-stage {
+      flex: 1;
+      min-height: 200px;
+      border: 1px solid rgba(98, 238, 169, 0.24);
+      background:
+        linear-gradient(140deg, rgba(9, 43, 29, 0.68), rgba(6, 20, 14, 0.78)),
+        radial-gradient(circle at 22% 18%, rgba(63, 214, 147, 0.16), transparent 50%);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #b8dfcd;
+      padding: 12px;
+    }
+
+    .media-title { font-size: 0.9rem; color: #ddfdef; margin: 0; }
+    .media-caption { font-size: 0.82rem; margin: 5px 0 0; color: #95c0ad; }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .carousel-btn {
+      border: 1px solid rgba(98, 238, 169, 0.42);
+      background: rgba(8, 20, 14, 0.74);
+      color: #dcffee;
+      font: inherit;
+      padding: 5px 9px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .carousel-meta {
+      color: #a8d6c1;
+      font-size: 0.8rem;
+    }
 
     @media (max-width: 700px) {
       .container { padding-top: 24px; }
       .hero { padding: 21px; }
+      .case-body { grid-template-columns: 1fr; }
+      .media-card { min-height: 220px; }
     }
   </style>
 </head>
@@ -244,42 +354,165 @@
 
     <section class="hero">
       <h1 class="chakra-petch-bold">In-Depth</h1>
-      <p class="subtitle">Detailed project stories for people who want process, technical decisions, and reflection. Replace this starter content with your own case studies.</p>
+      <p class="subtitle">For those who want to learn more about my projects, this page goes beyond the quick summary. Each case study breaks down the real problem, the direction I chose, how I implemented it, and where I would take it next. Expand any card below for the full context and media walkthrough layout.</p>
     </section>
 
     <section>
-      <h2 class="section-title chakra-petch-semibold">Case Study Format</h2>
-
-      <article class="project">
-        <h3 class="chakra-petch-semibold">Project Name</h3>
-        <p>One-line summary of what this project does and who it serves.</p>
-        <p class="label chakra-petch-medium">Problem</p>
-        <p>What specific challenge were you solving?</p>
-        <p class="label chakra-petch-medium">Approach</p>
-        <p>What architecture, stack, and tradeoffs did you choose?</p>
-        <p class="label chakra-petch-medium">Outcome</p>
-        <p>What improved? Mention concrete metrics if available.</p>
-        <p class="label chakra-petch-medium">Reflection</p>
-        <p>What would you change in v2, and what did you learn?</p>
-        <a href="https://github.com/mouminx" target="_blank" rel="noreferrer">Project Repository</a>
-      </article>
-
-      <article class="project">
-        <h3 class="chakra-petch-semibold">Second Project Name</h3>
-        <p>Duplicate this card for each project you want to highlight deeply.</p>
-        <p class="label chakra-petch-medium">Problem</p>
-        <p>Describe the user or business pain point.</p>
-        <p class="label chakra-petch-medium">Approach</p>
-        <p>Outline key implementation details and reasoning.</p>
-        <p class="label chakra-petch-medium">Outcome</p>
-        <p>Share results, performance gains, or feedback.</p>
-        <p class="label chakra-petch-medium">Reflection</p>
-        <p>Explain tradeoffs and next iteration ideas.</p>
-        <a href="https://github.com/mouminx" target="_blank" rel="noreferrer">Project Repository</a>
-      </article>
+      <h2 class="section-title chakra-petch-semibold">Project Case Studies</h2>
+      <div id="cards-stack" class="cards-stack"></div>
     </section>
   </main>
 <script>
+    const caseStudies = [
+      {
+        id: "forest-rogue-like",
+        title: "Forest Rogue-like Engine",
+        summary: "Custom 2D rogue-like engine built from scratch using C#/.NET and OpenTK with ECS-based gameplay systems.",
+        tags: ["C#", ".NET", "OpenTK", "ECS", "Procedural Generation", "Isometric"],
+        problem: "I wanted full control over rendering, entity composition, and simulation logic rather than relying on engine abstractions that hide core systems behavior.",
+        vision: "Build a clean and extensible gameplay architecture where movement, combat, AI, and world generation can evolve independently as the project grows.",
+        solution: "Implemented a custom game loop, ECS-driven data flow, and procedural map generation with clear module boundaries for rendering, simulation, and content logic.",
+        next: "Add save-state tooling, better debugging overlays for ECS systems, and richer enemy behavior tuning with profiling-driven optimization.",
+        media: [
+          { title: "Gameplay Loop Clip", caption: "Main exploration and combat cycle placeholder." },
+          { title: "Procedural Map Preview", caption: "Map generation pass and room-linking visualization." },
+          { title: "ECS Debug Overlay", caption: "Entity/component diagnostics and frame timing." }
+        ]
+      },
+      {
+        id: "sell-keep-salvage",
+        title: "AI-Assisted ARPG Loot Evaluator",
+        summary: "Real-time loot analysis workflow using OCR extraction and rules-based scoring against player priorities.",
+        tags: ["Python", "FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "Decision Engine"],
+        problem: "In fast ARPG sessions, manual loot evaluation is cognitively expensive and slows gameplay decision making.",
+        vision: "Provide instant and explainable KEEP/SALVAGE/SELL recommendations that integrate naturally into gameplay flow.",
+        solution: "Built an OCR-to-decision pipeline with FastAPI endpoints, affix normalization, threshold scoring logic, and a frontend overlay-ready response structure.",
+        next: "Add richer affix weighting presets, confidence scoring UI, and adaptive profile tuning based on player choice history.",
+        media: [
+          { title: "OCR Extraction Step", caption: "Tooltip image parse and text cleanup flow." },
+          { title: "Decision Engine Trace", caption: "Affix scoring breakdown and recommendation reason." },
+          { title: "Overlay Integration Mock", caption: "In-game decision surface placeholder." }
+        ]
+      },
+      {
+        id: "tower-defense",
+        title: "Tower Defense Systems Engine",
+        summary: "Wave-based defense simulation with modular enemy pathing, targeting logic, and progression tuning.",
+        tags: ["C#", ".NET", "Game Loop", "Pathfinding", "Wave System", "Performance"],
+        problem: "Tower defense prototypes often become brittle when enemy behavior, scaling, and tower interactions are tightly coupled.",
+        vision: "Design a systems-first architecture that supports rapid balancing and predictable behavior under increasing wave complexity.",
+        solution: "Structured the project around a deterministic update loop with separated wave orchestration, target selection, and combat resolution modules.",
+        next: "Add telemetry dashboards for balancing decisions, object pooling refinements, and scenario-based automated regression tests.",
+        media: [
+          { title: "Wave Orchestration View", caption: "Spawn pacing and difficulty scaling placeholder." },
+          { title: "Targeting Logic Diagram", caption: "Priority rules and engagement range visualization." },
+          { title: "Performance Profile Panel", caption: "Late-wave frame-cost and entity count snapshot." }
+        ]
+      }
+    ];
+
+    const expandedCards = new Set();
+    const mediaIndex = new Map();
+    const cardsStackEl = document.getElementById("cards-stack");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function tagMarkup(tags) {
+      return tags.map((tag) => `<span class="tech-tag">${escapeHtml(tag)}</span>`).join("");
+    }
+
+    function renderCards() {
+      cardsStackEl.innerHTML = caseStudies.map((card) => {
+        const isExpanded = expandedCards.has(card.id);
+        const slides = card.media || [];
+        const active = Math.min(mediaIndex.get(card.id) || 0, Math.max(0, slides.length - 1));
+        const slide = slides[active] || { title: "Media Slot", caption: "Add video, GIF, or image later." };
+        const total = Math.max(1, slides.length);
+
+        return `
+          <article class="case-card" data-card-id="${card.id}">
+            <div class="case-top">
+              <div class="case-title-wrap">
+                <h3 class="chakra-petch-semibold">${escapeHtml(card.title)}</h3>
+                <p class="case-summary">${escapeHtml(card.summary)}</p>
+              </div>
+              <button class="case-toggle" type="button" data-action="toggle" data-card-id="${card.id}">
+                ${isExpanded ? "Collapse" : "Expand"}
+              </button>
+            </div>
+            ${isExpanded ? `
+              <div class="case-body">
+                <div class="case-content">
+                  <div class="tags">${tagMarkup(card.tags)}</div>
+                  <div class="case-block">
+                    <p class="case-label chakra-petch-semibold">Problem</p>
+                    <p class="case-text">${escapeHtml(card.problem)}</p>
+                  </div>
+                  <div class="case-block">
+                    <p class="case-label chakra-petch-semibold">Vision</p>
+                    <p class="case-text">${escapeHtml(card.vision)}</p>
+                  </div>
+                  <div class="case-block">
+                    <p class="case-label chakra-petch-semibold">Solution</p>
+                    <p class="case-text">${escapeHtml(card.solution)}</p>
+                  </div>
+                  <div class="case-block">
+                    <p class="case-label chakra-petch-semibold">What's Next</p>
+                    <p class="case-text">${escapeHtml(card.next)}</p>
+                  </div>
+                </div>
+                <aside class="media-card">
+                  <div class="media-stage">
+                    <div>
+                      <p class="media-title chakra-petch-semibold">${escapeHtml(slide.title)}</p>
+                      <p class="media-caption">${escapeHtml(slide.caption)}</p>
+                    </div>
+                  </div>
+                  <div class="carousel-controls">
+                    <button class="carousel-btn" type="button" data-action="prev-media" data-card-id="${card.id}">Prev</button>
+                    <span class="carousel-meta">${active + 1} / ${total}</span>
+                    <button class="carousel-btn" type="button" data-action="next-media" data-card-id="${card.id}">Next</button>
+                  </div>
+                </aside>
+              </div>
+            ` : ""}
+          </article>
+        `;
+      }).join("");
+    }
+
+    cardsStackEl.addEventListener("click", (event) => {
+      const trigger = event.target.closest("button[data-action]");
+      if (!trigger) return;
+      const cardId = trigger.dataset.cardId;
+      const action = trigger.dataset.action;
+      const card = caseStudies.find((item) => item.id === cardId);
+      if (!card) return;
+
+      if (action === "toggle") {
+        if (expandedCards.has(cardId)) expandedCards.delete(cardId);
+        else expandedCards.add(cardId);
+        renderCards();
+        return;
+      }
+
+      if (!expandedCards.has(cardId)) return;
+      const slides = card.media || [];
+      if (!slides.length) return;
+      const current = mediaIndex.get(cardId) || 0;
+      if (action === "prev-media") mediaIndex.set(cardId, (current - 1 + slides.length) % slides.length);
+      if (action === "next-media") mediaIndex.set(cardId, (current + 1) % slides.length);
+      renderCards();
+    });
+
+    renderCards();
 
     function initNodeNet() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
