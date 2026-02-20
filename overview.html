@@ -270,6 +270,14 @@
       line-height: 1.55;
     }
     .expanded-value strong { color: #effff8; font-weight: 700; }
+    .tag-groups { margin-top: 8px; display: grid; gap: 8px; }
+    .tag-group-label {
+      margin: 0 0 4px;
+      color: #ecfff5;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
     .grid {
       display: grid;
@@ -652,16 +660,23 @@
       }).join("");
     }
 
+    const knownLanguageSet = new Set([
+      "python", "javascript", "typescript", "java", "c#", "c++", "c", "go", "rust", "ruby",
+      "php", "swift", "kotlin", "scala", "r", "sql", ".net", "html", "css", "bash", "shell"
+    ]);
+
     const towerDefenseOverride = {
       title: "Tower Defense Systems Engine",
-      tags: ["C#", ".NET", "Game Loop", "Pathfinding", "Wave System", "AI Targeting", "Balancing", "Performance"],
+      languages: ["C#", ".NET"],
+      technologies: ["Game Loop", "Pathfinding", "Wave System", "AI Targeting", "Balancing", "Performance"],
       pitch: "Wave-based tower defense engine with modular enemy pathing, targeting logic, and scalable combat systems tuned for real-time strategy gameplay.",
       value: "Demonstrates <strong>game systems architecture</strong>, <strong>pathing and targeting algorithms</strong>, <strong>balance and progression design</strong>, and <strong>performance-aware real-time simulation</strong>."
     };
 
     const tailoredOverride = {
       title: "Resume Tailor - Local AI Resume Adjuster",
-      tags: ["Python", "FastAPI", "Ollama", "Prompt Engineering", "PDF Processing", "Pydantic", "Jinja2", "Privacy-First"],
+      languages: ["Python", "HTML", "CSS"],
+      technologies: ["FastAPI", "Ollama", "Prompt Engineering", "PDF Processing", "Pydantic", "Jinja2", "Privacy-First"],
       pitch: "Privacy-first resume tailoring app that uses local Ollama models to rewrite resumes against job descriptions with minimal, fact-grounded edits and no cloud APIs.",
       value: "Demonstrates <strong>LLM orchestration with schema-constrained outputs</strong>, <strong>end-to-end PDF extraction and regeneration</strong>, and <strong>production-ready privacy-first full-stack architecture</strong>."
     };
@@ -669,13 +684,15 @@
     const repoOverrides = {
       "forest-rogue-like": {
         title: "Forest Rogue-like Engine",
-        tags: ["C#", ".NET", "OpenTK", "ECS", "Procedural Generation", "Isometric"],
+        languages: ["C#", ".NET"],
+        technologies: ["OpenTK", "ECS", "Procedural Generation", "Isometric"],
         pitch: "Custom 2D rogue-like engine built from scratch with C#/.NET and OpenTK, using ECS for scalable gameplay systems.",
         value: "Built without Unity/Unreal, demonstrating <strong>systems programming</strong>, <strong>custom rendering pipeline design</strong>, <strong>procedural generation</strong>, and <strong>game-loop architecture</strong> skills."
       },
       "sell-keep-salvage": {
         title: "AI-Assisted ARPG Loot Evaluator",
-        tags: ["Python", "FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "API Design", "Decision Engine", "Full-Stack Integration"],
+        languages: ["Python"],
+        technologies: ["FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "API Design", "Decision Engine", "Full-Stack Integration"],
         pitch: "Real-time ARPG loot evaluator that captures item tooltips with OCR, normalizes affixes, and instantly recommends KEEP, SALVAGE, or SELL based on build profiles and leveling priorities.",
         value: "Demonstrates <strong>OCR + image preprocessing pipelines</strong>, <strong>real-time API and overlay integration</strong>, and <strong>tested decision logic</strong> with mocked endpoints and edge-case validation."
       },
@@ -689,6 +706,49 @@
     function getRepoOverride(repo) {
       if (!repo?.name) return null;
       return repoOverrides[repo.name] || repoOverrides[repo.name.toLowerCase()] || null;
+    }
+
+    function isLanguageTag(tag) {
+      const key = normalizeTag(tag).replaceAll("-", "");
+      if (knownLanguageSet.has(normalizeTag(tag))) return true;
+      return knownLanguageSet.has(key);
+    }
+
+    function groupedTagsMarkup(languages, technologies) {
+      const languageTags = Array.from(new Set((languages || []).filter(Boolean)));
+      const technologyTags = Array.from(new Set((technologies || []).filter(Boolean)));
+      let html = `<div class="tag-groups">`;
+      if (languageTags.length) {
+        html += `
+          <div class="tag-group">
+            <p class="tag-group-label">Languages Used</p>
+            <div class="tags">${tagHtmlFor(languageTags)}</div>
+          </div>
+        `;
+      }
+      if (technologyTags.length) {
+        html += `
+          <div class="tag-group">
+            <p class="tag-group-label">Technologies</p>
+            <div class="tags">${tagHtmlFor(technologyTags)}</div>
+          </div>
+        `;
+      }
+      html += `</div>`;
+      return html;
+    }
+
+    function getTagGroups(repo, override) {
+      if (override?.languages || override?.technologies) {
+        return {
+          languages: override.languages || [],
+          technologies: override.technologies || []
+        };
+      }
+      const inferred = override?.tags || inferTags(repo);
+      const languages = inferred.filter(isLanguageTag);
+      const technologies = inferred.filter((tag) => !isLanguageTag(tag));
+      return { languages, technologies };
     }
 
     function oneLinePitch(repo) {
@@ -710,14 +770,14 @@
 
       const override = getRepoOverride(repo) || {};
       const title = override.title || repo.name;
-      const tags = override.tags || inferTags(repo);
+      const tagGroups = getTagGroups(repo, override);
       expandedSlot.innerHTML = `
         <article class="expanded-card">
           <div class="expanded-head">
             <h3 class="expanded-title chakra-petch-bold">${escapeHtml(title)}</h3>
             <button class="collapse-btn" id="collapse-expanded" type="button">Collapse</button>
           </div>
-          <div class="tags">${tagHtmlFor(tags)}</div>
+          ${groupedTagsMarkup(tagGroups.languages, tagGroups.technologies)}
           <p class="expanded-pitch">${escapeHtml(oneLinePitch(repo))}</p>
           <p class="expanded-value">${technicalValue(repo)}</p>
         </article>

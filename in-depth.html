@@ -252,6 +252,14 @@
       gap: 6px;
       margin: 0 0 12px;
     }
+    .tag-groups { margin: 0 0 12px; display: grid; gap: 8px; }
+    .tag-group-label {
+      margin: 0 0 4px;
+      color: #ecfff5;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
     .tech-tag {
       font-size: 0.72rem;
@@ -368,7 +376,8 @@
         id: "forest-rogue-like",
         title: "Forest Rogue-like Engine",
         summary: "Custom 2D rogue-like engine built from scratch using C#/.NET and OpenTK with ECS-based gameplay systems.",
-        tags: ["C#", ".NET", "OpenTK", "ECS", "Procedural Generation", "Isometric"],
+        languages: ["C#", ".NET"],
+        technologies: ["OpenTK", "ECS", "Procedural Generation", "Isometric"],
         problem: "I wanted full control over rendering, entity composition, and simulation logic rather than relying on engine abstractions that hide core systems behavior.",
         vision: "Build a clean and extensible gameplay architecture where movement, combat, AI, and world generation can evolve independently as the project grows.",
         solution: "Implemented a custom game loop, ECS-driven data flow, and procedural map generation with clear module boundaries for rendering, simulation, and content logic.",
@@ -383,7 +392,8 @@
         id: "sell-keep-salvage",
         title: "AI-Assisted ARPG Loot Evaluator",
         summary: "Real-time loot analysis workflow using OCR extraction and rules-based scoring against player priorities.",
-        tags: ["Python", "FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "Decision Engine"],
+        languages: ["Python"],
+        technologies: ["FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "Decision Engine"],
         problem: "In fast ARPG sessions, manual loot evaluation is cognitively expensive and slows gameplay decision making.",
         vision: "Provide instant and explainable KEEP/SALVAGE/SELL recommendations that integrate naturally into gameplay flow.",
         solution: "Built an OCR-to-decision pipeline with FastAPI endpoints, affix normalization, threshold scoring logic, and a frontend overlay-ready response structure.",
@@ -398,7 +408,8 @@
         id: "tower-defense",
         title: "Tower Defense Systems Engine",
         summary: "Wave-based defense simulation with modular enemy pathing, targeting logic, and progression tuning.",
-        tags: ["C#", ".NET", "Game Loop", "Pathfinding", "Wave System", "Performance"],
+        languages: ["C#", ".NET"],
+        technologies: ["Game Loop", "Pathfinding", "Wave System", "Performance"],
         problem: "Tower defense prototypes often become brittle when enemy behavior, scaling, and tower interactions are tightly coupled.",
         vision: "Design a systems-first architecture that supports rapid balancing and predictable behavior under increasing wave complexity.",
         solution: "Structured the project around a deterministic update loop with separated wave orchestration, target selection, and combat resolution modules.",
@@ -413,7 +424,8 @@
         id: "tailored-io",
         title: "Resume Tailor - Local AI Resume Adjuster",
         summary: "Local-first resume tailoring workflow using FastAPI and Ollama to adapt resume content to job descriptions without cloud APIs.",
-        tags: ["Python", "FastAPI", "Ollama", "Prompt Engineering", "pdfplumber", "WeasyPrint", "Pydantic", "Jinja2"],
+        languages: ["Python", "HTML", "CSS"],
+        technologies: ["FastAPI", "Ollama", "Prompt Engineering", "pdfplumber", "WeasyPrint", "Pydantic", "Jinja2"],
         problem: "Generic resumes underperform against role-specific requirements, but users often cannot share personal data with cloud AI tools due to privacy and trust constraints.",
         vision: "Build a privacy-first assistant that performs constrained, fact-grounded resume tailoring locally with structured outputs and predictable formatting.",
         solution: "Implemented a modular pipeline for PDF extraction, schema-driven LLM prompting, constraint-aware rewrite logic, and deterministic PDF regeneration via template rendering.",
@@ -440,7 +452,31 @@
     }
 
     function tagMarkup(tags) {
-      return tags.map((tag) => `<span class="tech-tag">${escapeHtml(tag)}</span>`).join("");
+      return (tags || []).map((tag) => `<span class="tech-tag">${escapeHtml(tag)}</span>`).join("");
+    }
+
+    function groupedTagMarkup(card) {
+      const languages = card.languages || [];
+      const technologies = card.technologies || [];
+      let html = `<div class="tag-groups">`;
+      if (languages.length) {
+        html += `
+          <div class="tag-group">
+            <p class="tag-group-label">Languages Used</p>
+            <div class="tags">${tagMarkup(languages)}</div>
+          </div>
+        `;
+      }
+      if (technologies.length) {
+        html += `
+          <div class="tag-group">
+            <p class="tag-group-label">Technologies</p>
+            <div class="tags">${tagMarkup(technologies)}</div>
+          </div>
+        `;
+      }
+      html += `</div>`;
+      return html;
     }
 
     function renderCards() {
@@ -465,7 +501,7 @@
             ${isExpanded ? `
               <div class="case-body">
                 <div class="case-content">
-                  <div class="tags">${tagMarkup(card.tags)}</div>
+                  ${groupedTagMarkup(card)}
                   <div class="case-block">
                     <p class="case-label chakra-petch-semibold">Problem</p>
                     <p class="case-text">${escapeHtml(card.problem)}</p>
