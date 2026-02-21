@@ -13,10 +13,10 @@
     :root {
       --text: #10291f;
       --muted: #4e6d60;
-      --accent: #2f9f71;
-      --accent-dark: #247f5a;
-      --line: rgba(64, 130, 98, 0.24);
-      --shadow: 0 20px 50px rgba(18, 58, 40, 0.16);
+      --accent: #d97a2b;
+      --accent-dark: #b86420;
+      --line: rgba(168, 108, 56, 0.26);
+      --shadow: 0 20px 50px rgba(92, 56, 24, 0.14);
     }
 
     * { box-sizing: border-box; }
@@ -76,42 +76,42 @@
     .liquid-blob:nth-child(1) {
       left: -8%;
       top: -6%;
-      background: radial-gradient(circle at 35% 35%, rgba(86, 205, 149, 0.36), rgba(86, 205, 149, 0) 72%);
+      background: radial-gradient(circle at 35% 35%, rgba(241, 168, 98, 0.35), rgba(241, 168, 98, 0) 72%);
       animation: blobDriftA 34s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(2) {
       right: -10%;
       top: -8%;
-      background: radial-gradient(circle at 62% 32%, rgba(70, 191, 134, 0.32), rgba(70, 191, 134, 0) 74%);
+      background: radial-gradient(circle at 62% 32%, rgba(226, 141, 69, 0.32), rgba(226, 141, 69, 0) 74%);
       animation: blobDriftB 40s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(3) {
       left: 24%;
       top: 2%;
-      background: radial-gradient(circle at 50% 40%, rgba(46, 158, 108, 0.28), rgba(46, 158, 108, 0) 72%);
+      background: radial-gradient(circle at 50% 40%, rgba(206, 121, 47, 0.28), rgba(206, 121, 47, 0) 72%);
       animation: blobDriftC 36s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(4) {
       left: -6%;
       bottom: -12%;
-      background: radial-gradient(circle at 42% 58%, rgba(63, 176, 123, 0.31), rgba(63, 176, 123, 0) 73%);
+      background: radial-gradient(circle at 42% 58%, rgba(233, 152, 79, 0.30), rgba(233, 152, 79, 0) 73%);
       animation: blobDriftB 38s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(5) {
       right: -8%;
       bottom: -10%;
-      background: radial-gradient(circle at 58% 62%, rgba(52, 151, 104, 0.28), rgba(52, 151, 104, 0) 72%);
+      background: radial-gradient(circle at 58% 62%, rgba(193, 112, 42, 0.27), rgba(193, 112, 42, 0) 72%);
       animation: blobDriftA 42s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(6) {
       left: 34%;
       bottom: -14%;
-      background: radial-gradient(circle at 50% 50%, rgba(67, 171, 119, 0.30), rgba(67, 171, 119, 0) 74%);
+      background: radial-gradient(circle at 50% 50%, rgba(218, 136, 63, 0.29), rgba(218, 136, 63, 0) 74%);
       animation: blobDriftC 46s ease-in-out infinite alternate-reverse;
     }
 
@@ -124,7 +124,7 @@
       pointer-events: none;
       opacity: 0.52;
       mix-blend-mode: multiply;
-      filter: blur(0.3px) drop-shadow(0 0 10px rgba(140, 140, 140, 0.24));
+      filter: none;
     }
 
     #grain-layer {
@@ -152,7 +152,7 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
-      background: linear-gradient(145deg, #f8fffb 0%, #effaf4 44%, #e6f5ed 100%);
+      background: linear-gradient(145deg, #fffaf5 0%, #fdf3e8 44%, #faebdc 100%);
       background-size: 340% 340%;
       animation: liquidFlow 24s ease-in-out infinite;
       line-height: 1.62;
@@ -178,7 +178,7 @@
       -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
 
-    .btn:hover { border-color: #2f9f71; color: var(--accent); }
+    .btn:hover { border-color: #d97a2b; color: var(--accent); }
 
     .btn.primary { background: var(--accent); color: #ffffff; border-color: var(--accent); }
     .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #ffffff; }
@@ -262,7 +262,7 @@
     .case-title-wrap { margin-top: 0; }
     .case-title-wrap h3 {
       margin: 0;
-      color: #123124;
+      color: #4f2f17;
       font-size: 0.9rem;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -271,10 +271,10 @@
     .case-cover {
       width: 100%;
       height: 128px;
-      border: 1px solid rgba(86, 151, 118, 0.30);
+      border: 1px solid rgba(191, 128, 76, 0.34);
       margin-bottom: 12px;
       background:
-        linear-gradient(135deg, rgba(219, 246, 232, 0.95), rgba(241, 252, 246, 0.92));
+        linear-gradient(135deg, rgba(255, 238, 219, 0.95), rgba(255, 247, 238, 0.92));
       position: relative;
       display: grid;
       place-items: center;
@@ -296,7 +296,7 @@
     }
 
     .case-cover-label {
-      color: #3b5f51;
+      color: #73513a;
       font-size: 0.72rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -345,9 +345,9 @@
     .tech-tag {
       font-size: 0.72rem;
       padding: 3px 8px;
-      border: 1px solid rgba(92, 153, 121, 0.28);
-      background: rgba(227, 244, 235, 0.78);
-      color: #1d4737;
+      border: 1px solid rgba(179, 124, 79, 0.30);
+      background: rgba(252, 237, 224, 0.80);
+      color: #643c1f;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -355,7 +355,7 @@
     .case-block + .case-block { margin-top: 10px; }
     .case-label {
       margin: 0 0 3px;
-      color: #123124;
+      color: #4f2f17;
       font-size: 0.88rem;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -363,7 +363,7 @@
     .case-text { margin: 0; color: var(--muted); }
 
     .media-card {
-      border: 1px solid rgba(86, 151, 118, 0.26);
+      border: 1px solid rgba(186, 130, 85, 0.30);
       background: rgba(255, 255, 255, 0.82);
       padding: 10px;
       min-height: 260px;
@@ -375,19 +375,19 @@
     .media-stage {
       flex: 1;
       min-height: 200px;
-      border: 1px solid rgba(86, 151, 118, 0.26);
+      border: 1px solid rgba(186, 130, 85, 0.30);
       background:
-        linear-gradient(140deg, rgba(226, 247, 236, 0.88), rgba(248, 254, 250, 0.96)),
-        radial-gradient(circle at 22% 18%, rgba(107, 189, 149, 0.14), transparent 50%);
+        linear-gradient(140deg, rgba(255, 239, 223, 0.88), rgba(255, 248, 240, 0.96)),
+        radial-gradient(circle at 22% 18%, rgba(225, 150, 89, 0.14), transparent 50%);
       display: grid;
       place-items: center;
       text-align: center;
-      color: #486c5d;
+      color: #6e4f3b;
       padding: 12px;
     }
 
-    .media-title { font-size: 0.9rem; color: #123124; margin: 0; }
-    .media-caption { font-size: 0.82rem; margin: 5px 0 0; color: #567667; }
+    .media-title { font-size: 0.9rem; color: #4f2f17; margin: 0; }
+    .media-caption { font-size: 0.82rem; margin: 5px 0 0; color: #84644f; }
 
     .carousel-controls {
       display: flex;
@@ -409,7 +409,7 @@
     }
 
     .carousel-meta {
-      color: #567667;
+      color: #84644f;
       font-size: 0.8rem;
     }
 
@@ -703,17 +703,17 @@
       let width = 0;
       let height = 0;
       let nodes = [];
-      const speed = 0.42;
-      const maxDist = 156;
+      const speed = 0.46;
+      const maxDist = 190;
 
       function buildNodes() {
-        const count = Math.min(150, Math.max(48, Math.floor((width * height) / 17000)));
+        const count = Math.min(185, Math.max(64, Math.floor((width * height) / 14500)));
         nodes = Array.from({ length: count }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * speed,
           vy: (Math.random() - 0.5) * speed,
-          r: Math.random() * 1.9 + 1.1
+          r: Math.random() * 2.6 + 1.8
         }));
       }
 
@@ -746,11 +746,10 @@
             const dy = a.y - b.y;
             const d = Math.hypot(dx, dy);
             if (d > maxDist) continue;
-            const alpha = (1 - d / maxDist) * 0.5;
-            ctx.strokeStyle = `rgba(112, 112, 112, ${(alpha * 0.78).toFixed(3)})`;
-            ctx.lineWidth = 1;
-            ctx.shadowColor = "rgba(145, 145, 145, 0.28)";
-            ctx.shadowBlur = 11;
+            const alpha = (1 - d / maxDist) * 0.56;
+            ctx.strokeStyle = `rgba(110, 110, 110, ${(alpha * 0.85).toFixed(3)})`;
+            ctx.lineWidth = 1.35;
+            ctx.shadowBlur = 0;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -759,9 +758,8 @@
         }
 
         for (const n of nodes) {
-          ctx.fillStyle = "rgba(124, 124, 124, 0.40)";
-          ctx.shadowColor = "rgba(166, 166, 166, 0.34)";
-          ctx.shadowBlur = 14;
+          ctx.fillStyle = "rgba(98, 98, 98, 0.46)";
+          ctx.shadowBlur = 0;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
           ctx.fill();

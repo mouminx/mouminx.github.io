@@ -86,3 +86,4 @@ Update it whenever meaningful UI, behavior, data, or structure changes are made.
 - 2026-02-21: Refined folder tab visuals: cleaner slanted edge, full-width stacked file slips, outline visibility, and tab-width syncing for overview/in-depth cards.
 - 2026-02-21: Switched all pages to a light/white green-accent theme, removed folder tab/file-slip effects, and added reusable logo cover slots on overview and in-depth project cards.
 - 2026-02-21: Rebased card styling on glassmorphism (rounded cards, stronger blur, spec-style highlights/inset glow) and increased node-network prominence with faster, denser, gray-toned animation across all pages.
+- 2026-02-21: Overview cards now expand via cover/icon click (removed Details button), card tilt disabled for project cards, node-pattern blur removed with larger/denser nodes, overview recolored to blue hues, and in-depth recolored to orange hues.
