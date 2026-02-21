@@ -200,7 +200,7 @@
 
     .cards-stack {
       display: grid;
-      gap: 22px;
+      gap: 32px;
       margin-top: 10px;
     }
 
@@ -505,8 +505,6 @@
     const expandedCards = new Set();
     const mediaIndex = new Map();
     const cardsStackEl = document.getElementById("cards-stack");
-    const tiltEnabled = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -543,35 +541,6 @@
       }
       html += `</div>`;
       return html;
-    }
-
-    function attachTilt(card) {
-      if (!tiltEnabled || !motionOK || card.dataset.tiltBound === "1") return;
-      card.dataset.tiltBound = "1";
-      const maxTilt = 6;
-      let frame = null;
-      let targetX = 0;
-      let targetY = 0;
-
-      card.addEventListener("pointermove", (event) => {
-        const rect = card.getBoundingClientRect();
-        const px = (event.clientX - rect.left) / rect.width;
-        const py = (event.clientY - rect.top) / rect.height;
-        targetY = (px - 0.5) * maxTilt * 2;
-        targetX = (0.5 - py) * maxTilt * 2;
-
-        if (frame) return;
-        frame = requestAnimationFrame(() => {
-          card.style.transform = `rotateX(${targetX.toFixed(2)}deg) rotateY(${targetY.toFixed(2)}deg)`;
-          frame = null;
-        });
-      });
-
-      card.addEventListener("pointerleave", () => {
-        if (frame) cancelAnimationFrame(frame);
-        frame = null;
-        card.style.transform = "rotateX(0deg) rotateY(0deg)";
-      });
     }
 
     function renderCards() {
@@ -632,8 +601,6 @@
           </article>
         `;
       }).join("");
-
-      cardsStackEl.querySelectorAll(".case-card").forEach(attachTilt);
     }
 
     cardsStackEl.addEventListener("click", (event) => {
