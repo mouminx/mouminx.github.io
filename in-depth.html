@@ -224,18 +224,7 @@
       box-shadow: 0 16px 32px rgba(10, 35, 24, 0.5);
     }
 
-    .case-card::before {
-      content: "";
-      position: absolute;
-      left: 12px;
-      top: -9px;
-      width: 130px;
-      height: 12px;
-      border: 1px solid rgba(98, 238, 169, 0.34);
-      border-bottom: none;
-      background: rgba(18, 41, 29, 0.85);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-    }
+    .case-card::before { content: none; }
 
     .case-top {
       display: flex;
@@ -251,13 +240,14 @@
       color: #dbffec;
       font-size: 0.84rem;
       position: absolute;
-      left: 14px;
-      top: -13px;
-      max-width: calc(100% - 170px);
+      left: -1px;
+      top: -27px;
+      width: fit-content;
+      max-width: calc(100% - 12px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding: 3px 10px 5px;
+      padding: 5px 11px 6px;
       border: 1px solid rgba(98, 238, 169, 0.52);
       border-bottom: none;
       background: rgba(18, 41, 29, 0.93);

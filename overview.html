@@ -304,18 +304,7 @@
       will-change: transform;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      left: 12px;
-      top: -9px;
-      width: 108px;
-      height: 12px;
-      border: 1px solid rgba(98, 238, 169, 0.34);
-      border-bottom: none;
-      background: rgba(18, 41, 29, 0.85);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-    }
+    .card::before { content: none; }
 
     .card:hover {
       border-color: rgba(98, 238, 169, 0.65);
@@ -333,13 +322,14 @@
       font-size: 0.82rem;
       color: #dbffec;
       position: absolute;
-      left: 14px;
-      top: -13px;
-      max-width: calc(100% - 130px);
+      left: -1px;
+      top: -27px;
+      width: fit-content;
+      max-width: calc(100% - 10px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding: 3px 10px 5px;
+      padding: 5px 11px 6px;
       border: 1px solid rgba(98, 238, 169, 0.52);
       border-bottom: none;
       background: rgba(18, 41, 29, 0.93);
