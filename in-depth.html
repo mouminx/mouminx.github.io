@@ -11,12 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --text: #dcffee;
-      --muted: #8eb9a6;
-      --accent: #1ddf89;
-      --accent-dark: #14b56e;
-      --line: rgba(98, 238, 169, 0.22);
-      --shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+      --text: #10291f;
+      --muted: #4e6d60;
+      --accent: #2f9f71;
+      --accent-dark: #247f5a;
+      --line: rgba(64, 130, 98, 0.24);
+      --shadow: 0 20px 50px rgba(18, 58, 40, 0.16);
     }
 
     * { box-sizing: border-box; }
@@ -61,7 +61,7 @@
       inset: -14%;
       z-index: -2;
       pointer-events: none;
-      filter: blur(48px) saturate(125%);
+      filter: blur(62px) saturate(112%);
     }
 
     .liquid-blob {
@@ -69,49 +69,49 @@
       width: min(52vw, 640px);
       height: min(52vw, 640px);
       border-radius: 50%;
-      opacity: 0.48;
-      mix-blend-mode: screen;
+      opacity: 0.34;
+      mix-blend-mode: multiply;
     }
 
     .liquid-blob:nth-child(1) {
       left: -8%;
       top: -6%;
-      background: radial-gradient(circle at 35% 35%, rgba(27, 188, 118, 0.66), rgba(14, 82, 52, 0) 72%);
+      background: radial-gradient(circle at 35% 35%, rgba(86, 205, 149, 0.36), rgba(86, 205, 149, 0) 72%);
       animation: blobDriftA 34s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(2) {
       right: -10%;
       top: -8%;
-      background: radial-gradient(circle at 62% 32%, rgba(35, 167, 111, 0.58), rgba(12, 68, 44, 0) 74%);
+      background: radial-gradient(circle at 62% 32%, rgba(70, 191, 134, 0.32), rgba(70, 191, 134, 0) 74%);
       animation: blobDriftB 40s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(3) {
       left: 24%;
       top: 2%;
-      background: radial-gradient(circle at 50% 40%, rgba(14, 129, 80, 0.54), rgba(8, 52, 33, 0) 72%);
+      background: radial-gradient(circle at 50% 40%, rgba(46, 158, 108, 0.28), rgba(46, 158, 108, 0) 72%);
       animation: blobDriftC 36s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(4) {
       left: -6%;
       bottom: -12%;
-      background: radial-gradient(circle at 42% 58%, rgba(20, 161, 103, 0.62), rgba(10, 65, 41, 0) 73%);
+      background: radial-gradient(circle at 42% 58%, rgba(63, 176, 123, 0.31), rgba(63, 176, 123, 0) 73%);
       animation: blobDriftB 38s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(5) {
       right: -8%;
       bottom: -10%;
-      background: radial-gradient(circle at 58% 62%, rgba(18, 121, 77, 0.60), rgba(7, 45, 29, 0) 72%);
+      background: radial-gradient(circle at 58% 62%, rgba(52, 151, 104, 0.28), rgba(52, 151, 104, 0) 72%);
       animation: blobDriftA 42s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(6) {
       left: 34%;
       bottom: -14%;
-      background: radial-gradient(circle at 50% 50%, rgba(22, 147, 93, 0.56), rgba(9, 56, 36, 0) 74%);
+      background: radial-gradient(circle at 50% 50%, rgba(67, 171, 119, 0.30), rgba(67, 171, 119, 0) 74%);
       animation: blobDriftC 46s ease-in-out infinite alternate-reverse;
     }
 
@@ -122,9 +122,9 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.40;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 10px rgba(66, 255, 176, 0.35));
+      opacity: 0.26;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 8px rgba(69, 160, 112, 0.22));
     }
 
     #grain-layer {
@@ -132,8 +132,8 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.18;
-      mix-blend-mode: soft-light;
+      opacity: 0.08;
+      mix-blend-mode: multiply;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 120px 120px;
     }
@@ -152,7 +152,7 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
-      background: linear-gradient(150deg, #000604 0%, #010d09 34%, #021710 64%, #010907 100%);
+      background: linear-gradient(145deg, #f8fffb 0%, #effaf4 44%, #e6f5ed 100%);
       background-size: 340% 340%;
       animation: liquidFlow 24s ease-in-out infinite;
       line-height: 1.62;
@@ -169,7 +169,7 @@
     .btn {
       border: 1px solid var(--line);
       border-radius: 0;
-      background: rgba(10, 24, 17, 0.44);
+      background: rgba(255, 255, 255, 0.78);
       color: var(--text);
       text-decoration: none;
       padding: 9px 12px;
@@ -178,15 +178,15 @@
       -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
 
-    .btn:hover { border-color: #2f7358; color: var(--accent); }
+    .btn:hover { border-color: #2f9f71; color: var(--accent); }
 
-    .btn.primary { background: var(--accent); color: #001109; border-color: var(--accent); }
-    .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #001109; }
+    .btn.primary { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+    .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #ffffff; }
 
     .hero {
-      border: 1px solid rgba(98, 238, 169, 0.24);
+      border: 1px solid rgba(96, 158, 126, 0.24);
       border-radius: 0;
-      background: rgba(8, 20, 14, 0.48);
+      background: rgba(255, 255, 255, 0.82);
       padding: 26px;
       box-shadow: var(--shadow);
       margin-bottom: 18px;
@@ -207,12 +207,12 @@
 
     .case-card {
       position: relative;
-      border: 1px solid rgba(98, 238, 169, 0.22);
+      border: 1px solid rgba(86, 151, 118, 0.28);
       border-radius: 0;
-      background: rgba(10, 24, 17, 0.44);
+      background: rgba(255, 255, 255, 0.86);
       box-shadow: var(--shadow);
-      padding: 26px 16px 16px;
-      overflow: visible;
+      padding: 16px;
+      overflow: hidden;
       transform-style: preserve-3d;
       will-change: transform;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease-out;
@@ -221,8 +221,8 @@
     }
 
     .case-card:hover {
-      border-color: rgba(98, 238, 169, 0.60);
-      box-shadow: 0 16px 32px rgba(10, 35, 24, 0.5);
+      border-color: rgba(67, 140, 103, 0.62);
+      box-shadow: 0 18px 34px rgba(31, 96, 69, 0.16);
     }
 
     .case-card::before { content: none; }
@@ -235,94 +235,56 @@
       flex-wrap: wrap;
     }
 
-    .case-title-wrap { margin-top: 8px; }
+    .case-title-wrap { margin-top: 0; }
     .case-title-wrap h3 {
       margin: 0;
-      color: #dbffec;
-      font-size: 0.84rem;
-      position: absolute;
-      left: -1px;
-      top: -27px;
-      width: fit-content;
-      max-width: calc(100% - 12px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 5px 20px 6px 11px;
-      border: 1px solid rgba(98, 238, 169, 0.52);
-      border-bottom: none;
-      background: rgba(18, 41, 29, 0.93);
+      color: #123124;
+      font-size: 0.9rem;
       letter-spacing: 0.03em;
       text-transform: uppercase;
-      overflow: visible;
-      z-index: 2;
-      clip-path: none;
     }
 
-    .case-title-wrap h3::after {
-      content: "";
-      position: absolute;
-      right: -1px;
-      top: -1px;
-      width: 16px;
-      height: calc(100% + 1px);
+    .case-cover {
+      width: 100%;
+      height: 128px;
+      border: 1px solid rgba(86, 151, 118, 0.30);
+      margin-bottom: 12px;
       background:
-        linear-gradient(135deg, transparent 44%, rgba(18, 41, 29, 0.93) 45%);
-      border-top: 1px solid rgba(98, 238, 169, 0.52);
-      border-right: 1px solid rgba(98, 238, 169, 0.52);
-      pointer-events: none;
+        linear-gradient(135deg, rgba(219, 246, 232, 0.95), rgba(241, 252, 246, 0.92));
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
     }
 
-    .folder-files {
-      position: absolute;
-      left: -1px;
-      top: -27px;
-      height: 20px;
-      overflow: hidden;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: transform 0.24s ease, opacity 0.24s ease;
+    .case-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: relative;
       z-index: 1;
     }
 
-    .folder-files span {
-      position: absolute;
-      left: 0;
-      right: 0;
-      border-radius: 1px 1px 0 0;
-      border: 1px solid rgba(98, 238, 169, 0.40);
-      border-bottom: none;
-      background: rgba(20, 49, 34, 0.9);
-      outline: 1px solid rgba(220, 255, 238, 0.42);
-      outline-offset: 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
-      transform: translateY(0);
-      transition: transform 0.24s ease;
+    .media-stage .case-cover {
+      height: 86px;
+      margin-bottom: 8px;
     }
 
-    .folder-files span:nth-child(1) { top: 7px; height: 13px; z-index: 1; }
-    .folder-files span:nth-child(2) { top: 10px; height: 10px; z-index: 2; }
-    .folder-files span:nth-child(3) { top: 13px; height: 7px; z-index: 3; }
-
-    .case-card:hover .folder-files,
-    .case-card:focus-within .folder-files {
-      opacity: 1;
-      transform: translateY(0);
+    .case-cover-label {
+      color: #3b5f51;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 8px;
     }
-
-    .case-card:hover .folder-files span:nth-child(1),
-    .case-card:focus-within .folder-files span:nth-child(1) { transform: translateY(-4px); }
-    .case-card:hover .folder-files span:nth-child(2),
-    .case-card:focus-within .folder-files span:nth-child(2) { transform: translateY(-3px); }
-    .case-card:hover .folder-files span:nth-child(3),
-    .case-card:focus-within .folder-files span:nth-child(3) { transform: translateY(-2px); }
     .case-summary { margin: 0; color: var(--muted); }
 
     .case-toggle {
-      border: 1px solid rgba(98, 238, 169, 0.52);
-      background: rgba(8, 20, 14, 0.78);
-      color: #defeee;
+      border: 1px solid rgba(74, 149, 111, 0.34);
+      background: rgba(247, 255, 251, 0.94);
+      color: #1f4534;
       font: inherit;
       font-size: 0.76rem;
       letter-spacing: 0.03em;
@@ -337,7 +299,7 @@
       display: grid;
       grid-template-columns: 1.2fr 0.9fr;
       gap: 14px;
-      border-top: 1px solid rgba(98, 238, 169, 0.18);
+      border-top: 1px solid rgba(91, 145, 115, 0.24);
       padding-top: 14px;
     }
 
@@ -350,7 +312,7 @@
     .tag-groups { margin: 0 0 12px; display: grid; gap: 8px; }
     .tag-group-label {
       margin: 0 0 4px;
-      color: #ecfff5;
+      color: #123124;
       font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -359,9 +321,9 @@
     .tech-tag {
       font-size: 0.72rem;
       padding: 3px 8px;
-      border: 1px solid rgba(98, 238, 169, 0.36);
-      background: rgba(29, 223, 137, 0.12);
-      color: #dff7eb;
+      border: 1px solid rgba(92, 153, 121, 0.28);
+      background: rgba(227, 244, 235, 0.78);
+      color: #1d4737;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -369,7 +331,7 @@
     .case-block + .case-block { margin-top: 10px; }
     .case-label {
       margin: 0 0 3px;
-      color: #ecfff5;
+      color: #123124;
       font-size: 0.88rem;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -377,8 +339,8 @@
     .case-text { margin: 0; color: var(--muted); }
 
     .media-card {
-      border: 1px solid rgba(98, 238, 169, 0.24);
-      background: rgba(7, 16, 12, 0.6);
+      border: 1px solid rgba(86, 151, 118, 0.26);
+      background: rgba(255, 255, 255, 0.82);
       padding: 10px;
       min-height: 260px;
       display: flex;
@@ -389,19 +351,19 @@
     .media-stage {
       flex: 1;
       min-height: 200px;
-      border: 1px solid rgba(98, 238, 169, 0.24);
+      border: 1px solid rgba(86, 151, 118, 0.26);
       background:
-        linear-gradient(140deg, rgba(9, 43, 29, 0.68), rgba(6, 20, 14, 0.78)),
-        radial-gradient(circle at 22% 18%, rgba(63, 214, 147, 0.16), transparent 50%);
+        linear-gradient(140deg, rgba(226, 247, 236, 0.88), rgba(248, 254, 250, 0.96)),
+        radial-gradient(circle at 22% 18%, rgba(107, 189, 149, 0.14), transparent 50%);
       display: grid;
       place-items: center;
       text-align: center;
-      color: #b8dfcd;
+      color: #486c5d;
       padding: 12px;
     }
 
-    .media-title { font-size: 0.9rem; color: #ddfdef; margin: 0; }
-    .media-caption { font-size: 0.82rem; margin: 5px 0 0; color: #95c0ad; }
+    .media-title { font-size: 0.9rem; color: #123124; margin: 0; }
+    .media-caption { font-size: 0.82rem; margin: 5px 0 0; color: #567667; }
 
     .carousel-controls {
       display: flex;
@@ -411,9 +373,9 @@
     }
 
     .carousel-btn {
-      border: 1px solid rgba(98, 238, 169, 0.42);
-      background: rgba(8, 20, 14, 0.74);
-      color: #dcffee;
+      border: 1px solid rgba(74, 149, 111, 0.34);
+      background: rgba(247, 255, 251, 0.94);
+      color: #214535;
       font: inherit;
       padding: 5px 9px;
       cursor: pointer;
@@ -423,7 +385,7 @@
     }
 
     .carousel-meta {
-      color: #a8d6c1;
+      color: #567667;
       font-size: 0.8rem;
     }
 
@@ -471,6 +433,7 @@
         id: "forest-rogue-like",
         title: "Forest Rogue-like Engine",
         summary: "Custom 2D rogue-like engine built from scratch using C#/.NET and OpenTK with ECS-based gameplay systems.",
+        cover: "/assets/project-covers/forest-rogue-like.png",
         languages: ["C#", ".NET"],
         technologies: ["OpenTK", "ECS", "Procedural Generation", "Isometric"],
         problem: "I wanted full control over rendering, entity composition, and simulation logic rather than relying on engine abstractions that hide core systems behavior.",
@@ -487,6 +450,7 @@
         id: "sell-keep-salvage",
         title: "AI-Assisted ARPG Loot Evaluator",
         summary: "Real-time loot analysis workflow using OCR extraction and rules-based scoring against player priorities.",
+        cover: "/assets/project-covers/sell-keep-salvage.png",
         languages: ["Python"],
         technologies: ["FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "Decision Engine"],
         problem: "In fast ARPG sessions, manual loot evaluation is cognitively expensive and slows gameplay decision making.",
@@ -503,6 +467,7 @@
         id: "tower-defense",
         title: "Tower Defense Systems Engine",
         summary: "Wave-based defense simulation with modular enemy pathing, targeting logic, and progression tuning.",
+        cover: "/assets/project-covers/tower-defense.png",
         languages: ["C#", ".NET"],
         technologies: ["Game Loop", "Pathfinding", "Wave System", "Performance"],
         problem: "Tower defense prototypes often become brittle when enemy behavior, scaling, and tower interactions are tightly coupled.",
@@ -519,6 +484,7 @@
         id: "tailored-io",
         title: "Resume Tailor - Local AI Resume Adjuster",
         summary: "Local-first resume tailoring workflow using FastAPI and Ollama to adapt resume content to job descriptions without cloud APIs.",
+        cover: "/assets/project-covers/tailored-io.png",
         languages: ["Python", "HTML", "CSS"],
         technologies: ["FastAPI", "Ollama", "Prompt Engineering", "pdfplumber", "WeasyPrint", "Pydantic", "Jinja2"],
         problem: "Generic resumes underperform against role-specific requirements, but users often cannot share personal data with cloud AI tools due to privacy and trust constraints.",
@@ -535,6 +501,7 @@
         id: "nikkah-planner",
         title: "Nikah Planner - Muslim Wedding Planning Platform",
         summary: "Full-stack TypeScript planning platform built for Muslim and Desi multi-day weddings with collaborative family workflows.",
+        cover: "/assets/project-covers/nikkah-planner.png",
         languages: ["TypeScript", "HTML", "CSS", "SQL"],
         technologies: ["Next.js 14", "React", "App Router", "Server Components", "Server Actions", "Prisma", "PostgreSQL", "NextAuth.js", "Google OAuth", "Zod", "Tailwind CSS", "shadcn/ui", "dnd-kit", "RBAC / Permissions", "API Routes", "Streaming / Suspense"],
         problem: "Most wedding planning tools are optimized for Western single-day events and miss the multi-day ceremonies, family structures, and cultural workflows common across Muslim and Desi communities.",
@@ -551,6 +518,7 @@
         id: "megabonk-ml",
         title: "Megabonk RL Agent - Hybrid AI Game Playing System",
         summary: "Production-style reinforcement learning system that trains an autonomous agent to play Megabonk with hybrid learned and hardcoded control.",
+        cover: "/assets/project-covers/megabonk-ml.png",
         languages: ["Python"],
         technologies: ["PPO", "Stable-Baselines3", "Gymnasium", "dxcam", "Tesseract OCR", "TensorBoard", "Curriculum Learning", "Hybrid AI"],
         problem: "Pure end-to-end RL struggled with game-specific discrete states like menu handling, shop logic, and recovery flows, while noisy OCR signals destabilized reward quality.",
@@ -606,13 +574,11 @@
       return html;
     }
 
-    function syncFolderFiles(cardEl) {
-      const title = cardEl.querySelector(".case-title-wrap h3");
-      const files = cardEl.querySelector(".folder-files");
-      if (!title || !files) return;
-      const tabWidth = Math.ceil(title.getBoundingClientRect().width);
-      files.style.left = `${title.offsetLeft}px`;
-      files.style.width = `${tabWidth}px`;
+    function coverMarkup(cover, title) {
+      if (cover) {
+        return `<div class="case-cover"><span class="case-cover-label">Custom Logo Cover</span><img src="${escapeHtml(cover)}" alt="${escapeHtml(title)} logo cover" loading="lazy" onerror="this.remove()"></div>`;
+      }
+      return `<div class="case-cover"><span class="case-cover-label">Custom Logo Cover</span></div>`;
     }
 
     function renderCards() {
@@ -625,7 +591,7 @@
 
         return `
           <article class="case-card" data-card-id="${card.id}">
-            <div class="folder-files" aria-hidden="true"><span></span><span></span><span></span></div>
+            ${coverMarkup(card.cover, card.title)}
             <div class="case-top">
               <div class="case-title-wrap">
                 <h3 class="chakra-petch-semibold">${escapeHtml(card.title)}</h3>
@@ -659,6 +625,7 @@
                 <aside class="media-card">
                   <div class="media-stage">
                     <div>
+                      ${coverMarkup(card.cover, card.title)}
                       <p class="media-title chakra-petch-semibold">${escapeHtml(slide.title)}</p>
                       <p class="media-caption">${escapeHtml(slide.caption)}</p>
                     </div>
@@ -675,7 +642,6 @@
         `;
       }).join("");
 
-      cardsStackEl.querySelectorAll(".case-card").forEach(syncFolderFiles);
     }
 
     cardsStackEl.addEventListener("click", (event) => {
@@ -757,9 +723,9 @@
             const d = Math.hypot(dx, dy);
             if (d > maxDist) continue;
             const alpha = (1 - d / maxDist) * 0.5;
-            ctx.strokeStyle = `rgba(94, 214, 159, ${alpha.toFixed(3)})`;
+            ctx.strokeStyle = `rgba(77, 136, 105, ${alpha.toFixed(3)})`;
             ctx.lineWidth = 1;
-            ctx.shadowColor = "rgba(99, 255, 181, 0.55)";
+            ctx.shadowColor = "rgba(72, 139, 105, 0.22)";
             ctx.shadowBlur = 9;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -769,8 +735,8 @@
         }
 
         for (const n of nodes) {
-          ctx.fillStyle = "rgba(210, 255, 236, 0.65)";
-          ctx.shadowColor = "rgba(120, 255, 194, 0.8)";
+          ctx.fillStyle = "rgba(58, 120, 88, 0.34)";
+          ctx.shadowColor = "rgba(64, 132, 96, 0.3)";
           ctx.shadowBlur = 12;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);

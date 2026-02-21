@@ -12,13 +12,11 @@ Update it whenever meaningful UI, behavior, data, or structure changes are made.
   - `in-depth.html` (expanded case-study cards with carousel placeholders)
 
 ## Current UX / Visual Direction
-- Dark green liquid-gradient background system with animated blobs.
-- Node-network canvas overlay with glow effect.
+- Light modern liquid-gradient background system (white base with green hues) with animated blobs.
+- Node-network canvas overlay tuned for subtle visibility on light backgrounds.
 - Subtle grain texture overlay.
-- Folder-style project cards on `overview` and `in-depth`:
-  - tab title anchored top-left
-  - slanted right edge on tab
-  - hover file-slip animation (3 small files sliding upward)
+- Flat glass cards (no folder tabs, no file-slip animation).
+- Card/image "cover" slots are now part of project cards to support custom logo artwork.
 - Tilt:
   - enabled on `overview` project cards
   - disabled on `in-depth` cards (intentionally removed because cards are large)
@@ -26,11 +24,13 @@ Update it whenever meaningful UI, behavior, data, or structure changes are made.
 ## Overview Page Behavior (`overview.html`)
 - Pulls repos from GitHub user API (`mouminx`), filters forks and blocked repos.
 - Grid cards show:
-  - title in folder tab
+  - top cover slot (logo cover image or placeholder)
+  - title in card body
   - compact tags
   - updated date + repo link
   - `Details` button
 - Expanded section shows:
+  - top cover slot (logo cover image or placeholder)
   - title
   - grouped tags:
     - `Languages Used`
@@ -48,7 +48,8 @@ Update it whenever meaningful UI, behavior, data, or structure changes are made.
 ## In-Depth Page Behavior (`in-depth.html`)
 - Cards are stacked and collapsed by default.
 - Each card expands to:
-  - title tab
+  - top cover slot (logo cover image or placeholder)
+  - title
   - grouped tags (`Languages Used`, `Technologies`)
   - sections: `Problem`, `Vision`, `Solution`, `What's Next`
   - right-side media placeholder carousel (`Prev` / `Next`)
@@ -74,12 +75,13 @@ Update it whenever meaningful UI, behavior, data, or structure changes are made.
 2. Keep naming keys robust:
    - include likely slug variants (`_` and `-` forms).
 3. Preserve existing visual language:
-   - folder tabs
-   - liquid background + node overlay
+  - light liquid background + subtle node overlay
+  - logo cover slots on cards
 4. After changes:
-   - append to `## Change Log` in this file
-   - keep summary short and concrete
+  - append to `## Change Log` in this file
+  - keep summary short and concrete
 
 ## Change Log
 - 2026-02-21: Added this context file and documented current architecture, UI patterns, and update protocol.
 - 2026-02-21: Refined folder tab visuals: cleaner slanted edge, full-width stacked file slips, outline visibility, and tab-width syncing for overview/in-depth cards.
+- 2026-02-21: Switched all pages to a light/white green-accent theme, removed folder tab/file-slip effects, and added reusable logo cover slots on overview and in-depth project cards.

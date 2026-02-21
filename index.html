@@ -11,12 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --text: #dcffee;
-      --muted: #90bca9;
-      --line: rgba(98, 238, 169, 0.22);
-      --green: #1ddf89;
-      --green-dark: #14b56e;
-      --shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      --text: #10291f;
+      --muted: #4e6d60;
+      --line: rgba(64, 130, 98, 0.24);
+      --green: #2f9f71;
+      --green-dark: #247f5a;
+      --shadow: 0 24px 48px rgba(18, 58, 40, 0.16);
     }
 
     * { box-sizing: border-box; }
@@ -61,7 +61,7 @@
       inset: -14%;
       z-index: -2;
       pointer-events: none;
-      filter: blur(48px) saturate(125%);
+      filter: blur(62px) saturate(112%);
     }
 
     .liquid-blob {
@@ -69,49 +69,49 @@
       width: min(52vw, 640px);
       height: min(52vw, 640px);
       border-radius: 50%;
-      opacity: 0.48;
-      mix-blend-mode: screen;
+      opacity: 0.34;
+      mix-blend-mode: multiply;
     }
 
     .liquid-blob:nth-child(1) {
       left: -8%;
       top: -6%;
-      background: radial-gradient(circle at 35% 35%, rgba(27, 188, 118, 0.66), rgba(14, 82, 52, 0) 72%);
+      background: radial-gradient(circle at 35% 35%, rgba(86, 205, 149, 0.36), rgba(86, 205, 149, 0) 72%);
       animation: blobDriftA 34s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(2) {
       right: -10%;
       top: -8%;
-      background: radial-gradient(circle at 62% 32%, rgba(35, 167, 111, 0.58), rgba(12, 68, 44, 0) 74%);
+      background: radial-gradient(circle at 62% 32%, rgba(70, 191, 134, 0.32), rgba(70, 191, 134, 0) 74%);
       animation: blobDriftB 40s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(3) {
       left: 24%;
       top: 2%;
-      background: radial-gradient(circle at 50% 40%, rgba(14, 129, 80, 0.54), rgba(8, 52, 33, 0) 72%);
+      background: radial-gradient(circle at 50% 40%, rgba(46, 158, 108, 0.28), rgba(46, 158, 108, 0) 72%);
       animation: blobDriftC 36s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(4) {
       left: -6%;
       bottom: -12%;
-      background: radial-gradient(circle at 42% 58%, rgba(20, 161, 103, 0.62), rgba(10, 65, 41, 0) 73%);
+      background: radial-gradient(circle at 42% 58%, rgba(63, 176, 123, 0.31), rgba(63, 176, 123, 0) 73%);
       animation: blobDriftB 38s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(5) {
       right: -8%;
       bottom: -10%;
-      background: radial-gradient(circle at 58% 62%, rgba(18, 121, 77, 0.60), rgba(7, 45, 29, 0) 72%);
+      background: radial-gradient(circle at 58% 62%, rgba(52, 151, 104, 0.28), rgba(52, 151, 104, 0) 72%);
       animation: blobDriftA 42s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(6) {
       left: 34%;
       bottom: -14%;
-      background: radial-gradient(circle at 50% 50%, rgba(22, 147, 93, 0.56), rgba(9, 56, 36, 0) 74%);
+      background: radial-gradient(circle at 50% 50%, rgba(67, 171, 119, 0.30), rgba(67, 171, 119, 0) 74%);
       animation: blobDriftC 46s ease-in-out infinite alternate-reverse;
     }
 
@@ -124,9 +124,9 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.40;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 10px rgba(66, 255, 176, 0.35));
+      opacity: 0.26;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 8px rgba(69, 160, 112, 0.22));
     }
 
     #grain-layer {
@@ -134,8 +134,8 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.18;
-      mix-blend-mode: soft-light;
+      opacity: 0.08;
+      mix-blend-mode: multiply;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 120px 120px;
     }
@@ -154,7 +154,7 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
-      background: linear-gradient(150deg, #000604 0%, #010d09 34%, #021710 64%, #010907 100%);
+      background: linear-gradient(145deg, #f8fffb 0%, #effaf4 44%, #e6f5ed 100%);
       background-size: 340% 340%;
       animation: liquidFlow 24s ease-in-out infinite;
       line-height: 1.55;
@@ -165,8 +165,8 @@
 
     .frame {
       width: min(1050px, 100%);
-      background: rgba(8, 20, 14, 0.48);
-      border: 1px solid rgba(98, 238, 169, 0.24);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(96, 158, 126, 0.24);
       border-radius: 0;
       box-shadow: var(--shadow);
       padding: clamp(20px, 3vw, 34px);
@@ -187,7 +187,7 @@
       padding: 18px;
       text-decoration: none;
       color: inherit;
-      background: rgba(10, 24, 17, 0.44);
+      background: rgba(255, 255, 255, 0.86);
       display: block;
       transition: transform 0.12s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
       min-height: 240px;
@@ -197,11 +197,11 @@
       -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
 
-    .card:hover { box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5); border-color: #2f7358; }
+    .card:hover { box-shadow: 0 16px 32px rgba(31, 96, 69, 0.16); border-color: #2f9f71; }
 
     .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 0; padding: 5px 10px; margin-bottom: 10px; transition: box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
-    .overview .tag { background: rgba(52, 146, 255, 0.20); color: #79beff; }
-    .deep .tag { background: rgba(255, 144, 46, 0.20); color: #ffb166; }
+    .overview .tag { background: rgba(52, 146, 255, 0.14); color: #165188; border: 1px solid rgba(50, 116, 168, 0.30); }
+    .deep .tag { background: rgba(255, 144, 46, 0.14); color: #8f4b12; border: 1px solid rgba(158, 97, 53, 0.30); }
 
     .card.overview:hover {
       border-color: rgba(86, 176, 255, 0.75);
@@ -209,8 +209,8 @@
     }
 
     .card.overview:hover h2 {
-      color: #f7fbff;
-      text-shadow: 0 0 14px rgba(89, 173, 255, 0.8), 0 0 30px rgba(89, 173, 255, 0.35);
+      color: #15406c;
+      text-shadow: none;
     }
 
     .card h2 { margin: 0 0 8px; font-size: 1.4rem; letter-spacing: -0.01em; transition: color 0.2s ease, text-shadow 0.2s ease; }
@@ -219,13 +219,13 @@
     .points li { margin: 6px 0; }
 
     .card.deep:hover {
-      border-color: rgba(255, 166, 84, 0.78);
-      box-shadow: 0 14px 34px rgba(255, 126, 41, 0.30);
+      border-color: rgba(211, 132, 66, 0.50);
+      box-shadow: 0 16px 34px rgba(138, 95, 54, 0.16);
     }
 
     .card.deep:hover h2 {
-      color: #fff9f3;
-      text-shadow: 0 0 14px rgba(255, 160, 82, 0.82), 0 0 30px rgba(255, 140, 60, 0.36);
+      color: #6a3a17;
+      text-shadow: none;
     }
 
     @media (max-width: 800px) {
@@ -334,9 +334,9 @@
             const d = Math.hypot(dx, dy);
             if (d > maxDist) continue;
             const alpha = (1 - d / maxDist) * 0.5;
-            ctx.strokeStyle = `rgba(94, 214, 159, ${alpha.toFixed(3)})`;
+            ctx.strokeStyle = `rgba(77, 136, 105, ${alpha.toFixed(3)})`;
             ctx.lineWidth = 1;
-            ctx.shadowColor = "rgba(99, 255, 181, 0.55)";
+            ctx.shadowColor = "rgba(72, 139, 105, 0.22)";
             ctx.shadowBlur = 9;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -346,8 +346,8 @@
         }
 
         for (const n of nodes) {
-          ctx.fillStyle = "rgba(210, 255, 236, 0.65)";
-          ctx.shadowColor = "rgba(120, 255, 194, 0.8)";
+          ctx.fillStyle = "rgba(58, 120, 88, 0.34)";
+          ctx.shadowColor = "rgba(64, 132, 96, 0.3)";
           ctx.shadowBlur = 12;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);

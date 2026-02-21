@@ -11,12 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --text: #dcffee;
-      --muted: #8eb9a6;
-      --accent: #1ddf89;
-      --accent-dark: #14b56e;
-      --line: rgba(98, 238, 169, 0.22);
-      --shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+      --text: #10291f;
+      --muted: #4e6d60;
+      --accent: #2f9f71;
+      --accent-dark: #247f5a;
+      --line: rgba(64, 130, 98, 0.24);
+      --shadow: 0 20px 50px rgba(18, 58, 40, 0.16);
     }
 
     * { box-sizing: border-box; }
@@ -56,7 +56,7 @@
       inset: -14%;
       z-index: -2;
       pointer-events: none;
-      filter: blur(48px) saturate(125%);
+      filter: blur(62px) saturate(112%);
     }
 
     .liquid-blob {
@@ -64,49 +64,49 @@
       width: min(52vw, 640px);
       height: min(52vw, 640px);
       border-radius: 50%;
-      opacity: 0.48;
-      mix-blend-mode: screen;
+      opacity: 0.34;
+      mix-blend-mode: multiply;
     }
 
     .liquid-blob:nth-child(1) {
       left: -8%;
       top: -6%;
-      background: radial-gradient(circle at 35% 35%, rgba(27, 188, 118, 0.66), rgba(14, 82, 52, 0) 72%);
+      background: radial-gradient(circle at 35% 35%, rgba(86, 205, 149, 0.36), rgba(86, 205, 149, 0) 72%);
       animation: blobDriftA 34s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(2) {
       right: -10%;
       top: -8%;
-      background: radial-gradient(circle at 62% 32%, rgba(35, 167, 111, 0.58), rgba(12, 68, 44, 0) 74%);
+      background: radial-gradient(circle at 62% 32%, rgba(70, 191, 134, 0.32), rgba(70, 191, 134, 0) 74%);
       animation: blobDriftB 40s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(3) {
       left: 24%;
       top: 2%;
-      background: radial-gradient(circle at 50% 40%, rgba(14, 129, 80, 0.54), rgba(8, 52, 33, 0) 72%);
+      background: radial-gradient(circle at 50% 40%, rgba(46, 158, 108, 0.28), rgba(46, 158, 108, 0) 72%);
       animation: blobDriftC 36s ease-in-out infinite alternate;
     }
 
     .liquid-blob:nth-child(4) {
       left: -6%;
       bottom: -12%;
-      background: radial-gradient(circle at 42% 58%, rgba(20, 161, 103, 0.62), rgba(10, 65, 41, 0) 73%);
+      background: radial-gradient(circle at 42% 58%, rgba(63, 176, 123, 0.31), rgba(63, 176, 123, 0) 73%);
       animation: blobDriftB 38s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(5) {
       right: -8%;
       bottom: -10%;
-      background: radial-gradient(circle at 58% 62%, rgba(18, 121, 77, 0.60), rgba(7, 45, 29, 0) 72%);
+      background: radial-gradient(circle at 58% 62%, rgba(52, 151, 104, 0.28), rgba(52, 151, 104, 0) 72%);
       animation: blobDriftA 42s ease-in-out infinite alternate-reverse;
     }
 
     .liquid-blob:nth-child(6) {
       left: 34%;
       bottom: -14%;
-      background: radial-gradient(circle at 50% 50%, rgba(22, 147, 93, 0.56), rgba(9, 56, 36, 0) 74%);
+      background: radial-gradient(circle at 50% 50%, rgba(67, 171, 119, 0.30), rgba(67, 171, 119, 0) 74%);
       animation: blobDriftC 46s ease-in-out infinite alternate-reverse;
     }
 
@@ -117,9 +117,9 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.40;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 10px rgba(66, 255, 176, 0.35));
+      opacity: 0.26;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 8px rgba(69, 160, 112, 0.22));
     }
 
     #grain-layer {
@@ -127,8 +127,8 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.18;
-      mix-blend-mode: soft-light;
+      opacity: 0.08;
+      mix-blend-mode: multiply;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 120px 120px;
     }
@@ -147,7 +147,7 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
-      background: linear-gradient(150deg, #000604 0%, #010d09 34%, #021710 64%, #010907 100%);
+      background: linear-gradient(145deg, #f8fffb 0%, #effaf4 44%, #e6f5ed 100%);
       background-size: 340% 340%;
       animation: liquidFlow 24s ease-in-out infinite;
       line-height: 1.55;
@@ -162,7 +162,7 @@
     .btn {
       border: 1px solid var(--line);
       border-radius: 0;
-      background: rgba(10, 24, 17, 0.44);
+      background: rgba(255, 255, 255, 0.78);
       color: var(--text);
       text-decoration: none;
       padding: 9px 12px;
@@ -171,11 +171,11 @@
       -webkit-backdrop-filter: blur(12px) saturate(130%);
     }
 
-    .btn:hover { border-color: #2f7358; color: var(--accent); }
+    .btn:hover { border-color: #2f9f71; color: var(--accent); }
 
     .hero {
-      background: rgba(8, 20, 14, 0.48);
-      border: 1px solid rgba(98, 238, 169, 0.24);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(96, 158, 126, 0.24);
       border-radius: 0;
       padding: 28px;
       box-shadow: var(--shadow);
@@ -202,7 +202,7 @@
       justify-content: center;
       color: var(--text);
       border: 1px solid var(--line);
-      background: rgba(10, 24, 17, 0.44);
+      background: rgba(255, 255, 255, 0.78);
       text-decoration: none;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
@@ -212,9 +212,9 @@
     .icon-link svg { width: 20px; height: 20px; fill: currentColor; }
 
     .icon-link:hover {
-      border-color: rgba(98, 238, 169, 0.78);
+      border-color: rgba(72, 140, 106, 0.65);
       transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(20, 181, 110, 0.22);
+      box-shadow: 0 10px 24px rgba(41, 112, 80, 0.20);
     }
 
     .projects-section { margin-top: 34px; }
@@ -223,7 +223,7 @@
       margin: 0 0 12px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #ecfff5;
+      color: #123124;
     }
 
     .status { color: var(--muted); margin: 0 0 12px; }
@@ -231,11 +231,11 @@
     #expanded-slot { margin: 10px 0 18px; }
 
     .expanded-card {
-      background: rgba(10, 26, 18, 0.62);
-      border: 1px solid rgba(119, 238, 180, 0.52);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(74, 149, 111, 0.32);
       border-radius: 0;
       padding: 16px;
-      box-shadow: 0 18px 42px rgba(16, 181, 117, 0.20);
+      box-shadow: 0 20px 44px rgba(24, 92, 63, 0.14);
       backdrop-filter: blur(14px) saturate(140%);
       -webkit-backdrop-filter: blur(14px) saturate(140%);
     }
@@ -250,30 +250,30 @@
     }
 
     .collapse-btn {
-      border: 1px solid rgba(119, 238, 180, 0.52);
-      background: rgba(12, 31, 21, 0.45);
-      color: #defeee;
+      border: 1px solid rgba(74, 149, 111, 0.34);
+      background: rgba(247, 255, 251, 0.95);
+      color: #1f4534;
       font: inherit;
       padding: 6px 10px;
       cursor: pointer;
     }
 
-    .expanded-title { margin: 0; color: #f1fff8; }
+    .expanded-title { margin: 0; color: #123124; }
     .expanded-pitch {
       margin: 10px 0 0;
-      color: #d6efe3;
+      color: #2f4a3e;
       line-height: 1.5;
     }
     .expanded-value {
       margin: 8px 0 0;
-      color: #b7d8c9;
+      color: #476457;
       line-height: 1.55;
     }
-    .expanded-value strong { color: #effff8; font-weight: 700; }
+    .expanded-value strong { color: #123124; font-weight: 700; }
     .tag-groups { margin-top: 8px; display: grid; gap: 8px; }
     .tag-group-label {
       margin: 0 0 4px;
-      color: #ecfff5;
+      color: #123124;
       font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -289,15 +289,15 @@
 
     .card {
       position: relative;
-      background: rgba(8, 20, 14, 0.48);
-      border: 1px solid rgba(98, 238, 169, 0.24);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(86, 151, 118, 0.28);
       border-radius: 0;
-      padding: 34px 14px 14px;
+      padding: 14px;
       box-shadow: var(--shadow);
-      min-height: 175px;
+      min-height: 240px;
       display: flex;
       flex-direction: column;
-      overflow: visible;
+      overflow: hidden;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease-out, opacity 0.2s ease;
@@ -308,8 +308,8 @@
     .card::before { content: none; }
 
     .card:hover {
-      border-color: rgba(98, 238, 169, 0.65);
-      box-shadow: 0 14px 34px rgba(20, 181, 110, 0.18);
+      border-color: rgba(67, 140, 103, 0.62);
+      box-shadow: 0 18px 34px rgba(31, 96, 69, 0.16);
     }
 
     .card.is-expanded-source {
@@ -320,85 +320,43 @@
 
     .card h3 {
       margin: 0;
-      font-size: 0.82rem;
-      color: #dbffec;
-      position: absolute;
-      left: -1px;
-      top: -27px;
-      width: fit-content;
-      max-width: calc(100% - 10px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 5px 20px 6px 11px;
-      border: 1px solid rgba(98, 238, 169, 0.52);
-      border-bottom: none;
-      background: rgba(18, 41, 29, 0.93);
-      letter-spacing: 0.03em;
+      font-size: 0.9rem;
+      color: #123124;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      overflow: visible;
-      z-index: 2;
-      clip-path: none;
+      line-height: 1.35;
     }
 
-    .card h3::after {
-      content: "";
-      position: absolute;
-      right: -1px;
-      top: -1px;
-      width: 16px;
-      height: calc(100% + 1px);
+    .card-cover {
+      width: 100%;
+      height: 112px;
+      border: 1px solid rgba(86, 151, 118, 0.30);
+      margin-bottom: 10px;
       background:
-        linear-gradient(135deg, transparent 44%, rgba(18, 41, 29, 0.93) 45%);
-      border-top: 1px solid rgba(98, 238, 169, 0.52);
-      border-right: 1px solid rgba(98, 238, 169, 0.52);
-      pointer-events: none;
+        linear-gradient(135deg, rgba(219, 246, 232, 0.95), rgba(241, 252, 246, 0.92));
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
     }
 
-    .folder-files {
-      position: absolute;
-      left: -1px;
-      top: -27px;
-      height: 20px;
-      overflow: hidden;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: transform 0.24s ease, opacity 0.24s ease;
+    .card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: relative;
       z-index: 1;
     }
 
-    .folder-files span {
-      position: absolute;
-      left: 0;
-      right: 0;
-      border-radius: 1px 1px 0 0;
-      border: 1px solid rgba(98, 238, 169, 0.40);
-      border-bottom: none;
-      background: rgba(20, 49, 34, 0.9);
-      outline: 1px solid rgba(220, 255, 238, 0.42);
-      outline-offset: 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
-      transform: translateY(0);
-      transition: transform 0.24s ease;
+    .card-cover-label {
+      color: #3b5f51;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 8px;
     }
-
-    .folder-files span:nth-child(1) { top: 7px; height: 13px; z-index: 1; }
-    .folder-files span:nth-child(2) { top: 10px; height: 10px; z-index: 2; }
-    .folder-files span:nth-child(3) { top: 13px; height: 7px; z-index: 3; }
-
-    .card:hover .folder-files,
-    .card:focus-within .folder-files {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card:hover .folder-files span:nth-child(1),
-    .card:focus-within .folder-files span:nth-child(1) { transform: translateY(-4px); }
-    .card:hover .folder-files span:nth-child(2),
-    .card:focus-within .folder-files span:nth-child(2) { transform: translateY(-3px); }
-    .card:hover .folder-files span:nth-child(3),
-    .card:focus-within .folder-files span:nth-child(3) { transform: translateY(-2px); }
 
     .tag-row {
       display: flex;
@@ -417,9 +375,9 @@
     .tech-tag {
       font-size: 0.72rem;
       padding: 3px 8px;
-      border: 1px solid transparent;
-      background: rgba(255, 255, 255, 0.04);
-      color: #dff7eb;
+      border: 1px solid rgba(92, 153, 121, 0.28);
+      background: rgba(227, 244, 235, 0.78);
+      color: #1d4737;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -436,15 +394,15 @@
     }
 
     .card a { color: var(--accent); font-weight: 600; text-decoration: none; }
-    .card a:hover { text-decoration: underline; color: #7dffcb; }
+    .card a:hover { text-decoration: underline; color: #2f9f71; }
 
     .expand-btn {
       position: absolute;
       top: 16px;
       right: 10px;
-      border: 1px solid rgba(98, 238, 169, 0.52);
-      background: rgba(8, 20, 14, 0.78);
-      color: #defeee;
+      border: 1px solid rgba(74, 149, 111, 0.34);
+      background: rgba(247, 255, 251, 0.94);
+      color: #214535;
       font: inherit;
       font-size: 0.7rem;
       letter-spacing: 0.03em;
@@ -571,9 +529,9 @@
             const d = Math.hypot(dx, dy);
             if (d > maxDist) continue;
             const alpha = (1 - d / maxDist) * 0.5;
-            ctx.strokeStyle = `rgba(94, 214, 159, ${alpha.toFixed(3)})`;
+            ctx.strokeStyle = `rgba(77, 136, 105, ${alpha.toFixed(3)})`;
             ctx.lineWidth = 1;
-            ctx.shadowColor = "rgba(99, 255, 181, 0.55)";
+            ctx.shadowColor = "rgba(72, 139, 105, 0.22)";
             ctx.shadowBlur = 9;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -583,8 +541,8 @@
         }
 
         for (const n of nodes) {
-          ctx.fillStyle = "rgba(210, 255, 236, 0.65)";
-          ctx.shadowColor = "rgba(120, 255, 194, 0.8)";
+          ctx.fillStyle = "rgba(58, 120, 88, 0.34)";
+          ctx.shadowColor = "rgba(64, 132, 96, 0.3)";
           ctx.shadowBlur = 12;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
@@ -606,17 +564,17 @@
     const expandedSlot = document.getElementById("expanded-slot");
 
     const tagPalette = {
-      javascript: { bg: "rgba(245, 223, 77, 0.22)", border: "rgba(245, 223, 77, 0.7)", text: "#fff6ad" },
-      typescript: { bg: "rgba(49, 120, 198, 0.22)", border: "rgba(99, 168, 245, 0.7)", text: "#cfe8ff" },
-      python: { bg: "rgba(53, 114, 165, 0.24)", border: "rgba(90, 155, 209, 0.7)", text: "#d4e9ff" },
-      java: { bg: "rgba(224, 120, 70, 0.24)", border: "rgba(238, 145, 101, 0.7)", text: "#ffe2d2" },
-      cpp: { bg: "rgba(0, 89, 156, 0.24)", border: "rgba(74, 152, 214, 0.7)", text: "#d4ebff" },
-      csharp: { bg: "rgba(106, 52, 142, 0.24)", border: "rgba(155, 102, 193, 0.7)", text: "#f0ddff" },
-      react: { bg: "rgba(97, 218, 251, 0.2)", border: "rgba(130, 224, 247, 0.7)", text: "#d8f9ff" },
-      node: { bg: "rgba(104, 160, 99, 0.24)", border: "rgba(132, 200, 125, 0.7)", text: "#e2f9de" },
-      html: { bg: "rgba(227, 79, 38, 0.24)", border: "rgba(240, 113, 79, 0.7)", text: "#ffe2d6" },
-      css: { bg: "rgba(38, 77, 228, 0.24)", border: "rgba(98, 129, 241, 0.7)", text: "#dbe5ff" },
-      default: { bg: "rgba(29, 223, 137, 0.16)", border: "rgba(98, 238, 169, 0.6)", text: "#dff7eb" }
+      javascript: { bg: "rgba(245, 223, 77, 0.28)", border: "rgba(182, 152, 19, 0.48)", text: "#514000" },
+      typescript: { bg: "rgba(49, 120, 198, 0.16)", border: "rgba(63, 122, 176, 0.44)", text: "#143755" },
+      python: { bg: "rgba(53, 114, 165, 0.16)", border: "rgba(55, 106, 151, 0.44)", text: "#153754" },
+      java: { bg: "rgba(224, 120, 70, 0.16)", border: "rgba(171, 88, 48, 0.40)", text: "#552a17" },
+      cpp: { bg: "rgba(0, 89, 156, 0.14)", border: "rgba(36, 93, 134, 0.40)", text: "#153a58" },
+      csharp: { bg: "rgba(106, 52, 142, 0.14)", border: "rgba(94, 53, 123, 0.40)", text: "#3f2155" },
+      react: { bg: "rgba(97, 218, 251, 0.16)", border: "rgba(53, 139, 166, 0.40)", text: "#12485b" },
+      node: { bg: "rgba(104, 160, 99, 0.16)", border: "rgba(74, 125, 70, 0.42)", text: "#244223" },
+      html: { bg: "rgba(227, 79, 38, 0.14)", border: "rgba(162, 67, 36, 0.40)", text: "#5a2112" },
+      css: { bg: "rgba(38, 77, 228, 0.14)", border: "rgba(46, 72, 154, 0.40)", text: "#1c2f66" },
+      default: { bg: "rgba(56, 149, 104, 0.14)", border: "rgba(62, 128, 98, 0.42)", text: "#1d4737" }
     };
 
     const fmtDate = (iso) => new Date(iso).toLocaleDateString(undefined, {
@@ -692,15 +650,6 @@
       });
     }
 
-    function syncFolderFiles(card) {
-      const title = card.querySelector("h3");
-      const files = card.querySelector(".folder-files");
-      if (!title || !files) return;
-      const tabWidth = Math.ceil(title.getBoundingClientRect().width);
-      files.style.left = `${title.offsetLeft}px`;
-      files.style.width = `${tabWidth}px`;
-    }
-
     async function fetchAllRepos(user) {
       const all = [];
       let page = 1;
@@ -762,6 +711,7 @@
       title: "Tower Defense Systems Engine",
       languages: ["C#", ".NET"],
       technologies: ["Game Loop", "Pathfinding", "Wave System", "AI Targeting", "Balancing", "Performance"],
+      cover: "/assets/project-covers/tower-defense.png",
       pitch: "Wave-based tower defense engine with modular enemy pathing, targeting logic, and scalable combat systems tuned for real-time strategy gameplay.",
       value: "Demonstrates <strong>game systems architecture</strong>, <strong>pathing and targeting algorithms</strong>, <strong>balance and progression design</strong>, and <strong>performance-aware real-time simulation</strong>."
     };
@@ -770,6 +720,7 @@
       title: "Resume Tailor - Local AI Resume Adjuster",
       languages: ["Python", "HTML", "CSS"],
       technologies: ["FastAPI", "Ollama", "Prompt Engineering", "PDF Processing", "Pydantic", "Jinja2", "Privacy-First"],
+      cover: "/assets/project-covers/tailored-io.png",
       pitch: "Privacy-first resume tailoring app that uses local Ollama models to rewrite resumes against job descriptions with minimal, fact-grounded edits and no cloud APIs.",
       value: "Demonstrates <strong>LLM orchestration with schema-constrained outputs</strong>, <strong>end-to-end PDF extraction and regeneration</strong>, and <strong>production-ready privacy-first full-stack architecture</strong>."
     };
@@ -778,6 +729,7 @@
       title: "Megabonk RL Agent - Hybrid AI Game Playing System",
       languages: ["Python"],
       technologies: ["Reinforcement Learning (PPO)", "Stable-Baselines3", "Gymnasium", "dxcam", "Tesseract OCR", "TensorBoard", "Curriculum Learning", "Hybrid AI"],
+      cover: "/assets/project-covers/megabonk-ml.png",
       pitch: "Real-time RL game agent that combines PPO-based movement learning with hardcoded decision logic to handle Megabonk gameplay, menus, progression, and recovery states.",
       value: "Demonstrates <strong>production-grade RL engineering</strong>, <strong>hybrid learned + heuristic control architecture</strong>, <strong>58 FPS real-time capture and training pipelines</strong>, and <strong>robust reward shaping under noisy OCR signals</strong>."
     };
@@ -786,6 +738,7 @@
       title: "Nikah Planner - Muslim Wedding Planning Platform",
       languages: ["TypeScript", "SQL", "HTML", "CSS"],
       technologies: ["Next.js 14", "React", "App Router", "Server Components", "Server Actions", "Prisma", "PostgreSQL", "NextAuth.js", "Google OAuth", "Zod", "Tailwind CSS", "shadcn/ui", "dnd-kit", "RBAC / Permissions", "API Routes", "Streaming / Suspense"],
+      cover: "/assets/project-covers/nikkah-planner.png",
       pitch: "Full-stack TypeScript wedding planning platform purpose-built for Muslim and Desi families, with multi-day event workflows, family collaboration, and culturally-aware planning defaults.",
       value: "Demonstrates <strong>modern Next.js architecture</strong>, <strong>complex domain modeling with permissions and collaboration</strong>, and <strong>product-focused full-stack execution for underrepresented real-world use cases</strong>."
     };
@@ -795,6 +748,7 @@
         title: "Forest Rogue-like Engine",
         languages: ["C#", ".NET"],
         technologies: ["OpenTK", "ECS", "Procedural Generation", "Isometric"],
+        cover: "/assets/project-covers/forest-rogue-like.png",
         pitch: "Custom 2D rogue-like engine built from scratch with C#/.NET and OpenTK, using ECS for scalable gameplay systems.",
         value: "Built without Unity/Unreal, demonstrating <strong>systems programming</strong>, <strong>custom rendering pipeline design</strong>, <strong>procedural generation</strong>, and <strong>game-loop architecture</strong> skills."
       },
@@ -802,6 +756,7 @@
         title: "AI-Assisted ARPG Loot Evaluator",
         languages: ["Python"],
         technologies: ["FastAPI", "Tesseract OCR", "OpenCV", "Pytest", "API Design", "Decision Engine", "Full-Stack Integration"],
+        cover: "/assets/project-covers/sell-keep-salvage.png",
         pitch: "Real-time ARPG loot evaluator that captures item tooltips with OCR, normalizes affixes, and instantly recommends KEEP, SALVAGE, or SELL based on build profiles and leveling priorities.",
         value: "Demonstrates <strong>OCR + image preprocessing pipelines</strong>, <strong>real-time API and overlay integration</strong>, and <strong>tested decision logic</strong> with mocked endpoints and edge-case validation."
       },
@@ -819,6 +774,13 @@
     function getRepoOverride(repo) {
       if (!repo?.name) return null;
       return repoOverrides[repo.name] || repoOverrides[repo.name.toLowerCase()] || null;
+    }
+
+    function coverMarkup(cover, title) {
+      if (cover) {
+        return `<div class="card-cover"><span class="card-cover-label">Custom Logo Cover</span><img src="${escapeHtml(cover)}" alt="${escapeHtml(title)} logo cover" loading="lazy" onerror="this.remove()"></div>`;
+      }
+      return `<div class="card-cover"><span class="card-cover-label">Custom Logo Cover</span></div>`;
     }
 
     function isLanguageTag(tag) {
@@ -884,12 +846,14 @@
       const override = getRepoOverride(repo) || {};
       const title = override.title || repo.name;
       const tagGroups = getTagGroups(repo, override);
+      const cover = override.cover || "";
       expandedSlot.innerHTML = `
         <article class="expanded-card">
           <div class="expanded-head">
             <h3 class="expanded-title chakra-petch-bold">${escapeHtml(title)}</h3>
             <button class="collapse-btn" id="collapse-expanded" type="button">Collapse</button>
           </div>
+          ${coverMarkup(cover, title)}
           ${groupedTagsMarkup(tagGroups.languages, tagGroups.technologies)}
           <p class="expanded-pitch">${escapeHtml(oneLinePitch(repo))}</p>
           <p class="expanded-value">${technicalValue(repo)}</p>
@@ -907,13 +871,16 @@
       projectsEl.innerHTML = "";
 
       reposData.forEach((repo) => {
+        const override = getRepoOverride(repo) || {};
+        const title = override.title || repo.name;
+        const cover = override.cover || "";
         const tags = inferTags(repo);
         const card = document.createElement("article");
         card.className = `card${expandedRepoId === repo.id ? " is-expanded-source" : ""}`;
         card.innerHTML = `
           <button class="expand-btn" type="button" data-id="${repo.id}">Details</button>
-          <div class="folder-files" aria-hidden="true"><span></span><span></span><span></span></div>
-          <h3 class="chakra-petch-semibold">${repo.name}</h3>
+          ${coverMarkup(cover, title)}
+          <h3 class="chakra-petch-semibold">${escapeHtml(title)}</h3>
           <div class="tag-row">${tagHtmlFor(tags)}</div>
           <div class="meta">
             <span>Updated ${fmtDate(repo.pushed_at)}</span>
@@ -921,7 +888,6 @@
           </div>
         `;
         projectsEl.appendChild(card);
-        syncFolderFiles(card);
         attachTilt(card);
       });
     }
