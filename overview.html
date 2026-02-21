@@ -330,7 +330,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding: 5px 11px 6px;
+      padding: 5px 20px 6px 11px;
       border: 1px solid rgba(98, 238, 169, 0.52);
       border-bottom: none;
       background: rgba(18, 41, 29, 0.93);
@@ -338,31 +338,29 @@
       text-transform: uppercase;
       overflow: visible;
       z-index: 2;
-      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
+      clip-path: none;
     }
 
     .card h3::after {
       content: "";
       position: absolute;
       right: -1px;
-      top: 0;
-      width: 13px;
-      height: 100%;
-      background: rgba(18, 41, 29, 0.93);
+      top: -1px;
+      width: 16px;
+      height: calc(100% + 1px);
+      background:
+        linear-gradient(135deg, transparent 44%, rgba(18, 41, 29, 0.93) 45%);
       border-top: 1px solid rgba(98, 238, 169, 0.52);
       border-right: 1px solid rgba(98, 238, 169, 0.52);
-      transform-origin: right top;
-      transform: skewX(-26deg);
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
       pointer-events: none;
     }
 
     .folder-files {
       position: absolute;
-      left: 12px;
-      top: -6px;
-      display: flex;
-      gap: 5px;
+      left: -1px;
+      right: -1px;
+      top: -12px;
+      height: 18px;
       pointer-events: none;
       opacity: 0;
       transform: translateY(10px);
@@ -371,7 +369,10 @@
     }
 
     .folder-files span {
-      height: 8px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 9px;
       border: 1px solid rgba(98, 238, 169, 0.40);
       border-bottom: none;
       background: rgba(20, 49, 34, 0.9);
@@ -380,9 +381,9 @@
       transition: transform 0.24s ease;
     }
 
-    .folder-files span:nth-child(1) { width: 20px; }
-    .folder-files span:nth-child(2) { width: 26px; }
-    .folder-files span:nth-child(3) { width: 17px; }
+    .folder-files span:nth-child(1) { top: 8px; z-index: 1; }
+    .folder-files span:nth-child(2) { top: 4px; z-index: 2; }
+    .folder-files span:nth-child(3) { top: 0; z-index: 3; }
 
     .card:hover .folder-files,
     .card:focus-within .folder-files {
