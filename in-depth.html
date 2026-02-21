@@ -205,13 +205,36 @@
     }
 
     .case-card {
+      position: relative;
       border: 1px solid rgba(98, 238, 169, 0.22);
       border-radius: 0;
       background: rgba(10, 24, 17, 0.44);
       box-shadow: var(--shadow);
-      padding: 16px;
+      padding: 26px 16px 16px;
+      overflow: visible;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease-out;
       backdrop-filter: blur(12px) saturate(130%);
       -webkit-backdrop-filter: blur(12px) saturate(130%);
+    }
+
+    .case-card:hover {
+      border-color: rgba(98, 238, 169, 0.60);
+      box-shadow: 0 16px 32px rgba(10, 35, 24, 0.5);
+    }
+
+    .case-card::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: -9px;
+      width: 130px;
+      height: 12px;
+      border: 1px solid rgba(98, 238, 169, 0.34);
+      border-bottom: none;
+      background: rgba(18, 41, 29, 0.85);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
 
     .case-top {
@@ -222,8 +245,26 @@
       flex-wrap: wrap;
     }
 
-    .case-title-wrap h3 { margin: 0; color: #dbffec; font-size: 1.08rem; }
-    .case-summary { margin: 8px 0 0; color: var(--muted); }
+    .case-title-wrap { margin-top: 8px; }
+    .case-title-wrap h3 {
+      margin: 0;
+      color: #dbffec;
+      font-size: 0.84rem;
+      position: absolute;
+      left: 14px;
+      top: -13px;
+      max-width: calc(100% - 170px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 3px 10px 5px;
+      border: 1px solid rgba(98, 238, 169, 0.52);
+      border-bottom: none;
+      background: rgba(18, 41, 29, 0.93);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .case-summary { margin: 0; color: var(--muted); }
 
     .case-toggle {
       border: 1px solid rgba(98, 238, 169, 0.52);
@@ -235,6 +276,7 @@
       text-transform: uppercase;
       padding: 6px 10px;
       cursor: pointer;
+      margin-top: 4px;
     }
 
     .case-body {
@@ -473,6 +515,8 @@
     const expandedCards = new Set();
     const mediaIndex = new Map();
     const cardsStackEl = document.getElementById("cards-stack");
+    const tiltEnabled = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -509,6 +553,35 @@
       }
       html += `</div>`;
       return html;
+    }
+
+    function attachTilt(card) {
+      if (!tiltEnabled || !motionOK || card.dataset.tiltBound === "1") return;
+      card.dataset.tiltBound = "1";
+      const maxTilt = 6;
+      let frame = null;
+      let targetX = 0;
+      let targetY = 0;
+
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width;
+        const py = (event.clientY - rect.top) / rect.height;
+        targetY = (px - 0.5) * maxTilt * 2;
+        targetX = (0.5 - py) * maxTilt * 2;
+
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          card.style.transform = `rotateX(${targetX.toFixed(2)}deg) rotateY(${targetY.toFixed(2)}deg)`;
+          frame = null;
+        });
+      });
+
+      card.addEventListener("pointerleave", () => {
+        if (frame) cancelAnimationFrame(frame);
+        frame = null;
+        card.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
     }
 
     function renderCards() {
@@ -569,6 +642,8 @@
           </article>
         `;
       }).join("");
+
+      cardsStackEl.querySelectorAll(".case-card").forEach(attachTilt);
     }
 
     cardsStackEl.addEventListener("click", (event) => {
