@@ -254,7 +254,66 @@
       background: rgba(18, 41, 29, 0.93);
       letter-spacing: 0.03em;
       text-transform: uppercase;
+      overflow: visible;
+      z-index: 2;
+      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
     }
+
+    .case-title-wrap h3::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 0;
+      width: 13px;
+      height: 100%;
+      background: rgba(18, 41, 29, 0.93);
+      border-top: 1px solid rgba(98, 238, 169, 0.52);
+      border-right: 1px solid rgba(98, 238, 169, 0.52);
+      transform-origin: right top;
+      transform: skewX(-26deg);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+      pointer-events: none;
+    }
+
+    .folder-files {
+      position: absolute;
+      left: 12px;
+      top: -6px;
+      display: flex;
+      gap: 5px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: transform 0.24s ease, opacity 0.24s ease;
+      z-index: 1;
+    }
+
+    .folder-files span {
+      height: 8px;
+      border: 1px solid rgba(98, 238, 169, 0.40);
+      border-bottom: none;
+      background: rgba(20, 49, 34, 0.9);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+      transform: translateY(0);
+      transition: transform 0.24s ease;
+    }
+
+    .folder-files span:nth-child(1) { width: 20px; }
+    .folder-files span:nth-child(2) { width: 26px; }
+    .folder-files span:nth-child(3) { width: 17px; }
+
+    .case-card:hover .folder-files,
+    .case-card:focus-within .folder-files {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .case-card:hover .folder-files span:nth-child(1),
+    .case-card:focus-within .folder-files span:nth-child(1) { transform: translateY(-3px); }
+    .case-card:hover .folder-files span:nth-child(2),
+    .case-card:focus-within .folder-files span:nth-child(2) { transform: translateY(-6px); }
+    .case-card:hover .folder-files span:nth-child(3),
+    .case-card:focus-within .folder-files span:nth-child(3) { transform: translateY(-4px); }
     .case-summary { margin: 0; color: var(--muted); }
 
     .case-toggle {
@@ -554,6 +613,7 @@
 
         return `
           <article class="case-card" data-card-id="${card.id}">
+            <div class="folder-files" aria-hidden="true"><span></span><span></span><span></span></div>
             <div class="case-top">
               <div class="case-title-wrap">
                 <h3 class="chakra-petch-semibold">${escapeHtml(card.title)}</h3>
