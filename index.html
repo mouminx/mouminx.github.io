@@ -124,9 +124,9 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.26;
+      opacity: 0.52;
       mix-blend-mode: multiply;
-      filter: drop-shadow(0 0 8px rgba(69, 160, 112, 0.22));
+      filter: blur(0.3px) drop-shadow(0 0 10px rgba(140, 140, 140, 0.24));
     }
 
     #grain-layer {
@@ -183,21 +183,51 @@
 
     .card {
       border: 1px solid var(--line);
-      border-radius: 0;
+      border-radius: 20px;
       padding: 18px;
       text-decoration: none;
       color: inherit;
-      background: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.15);
       display: block;
       transition: transform 0.12s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
       min-height: 240px;
       transform-style: preserve-3d;
       will-change: transform;
-      backdrop-filter: blur(12px) saturate(130%);
-      -webkit-backdrop-filter: blur(12px) saturate(130%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-color: rgba(255, 255, 255, 0.30);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.50),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.10),
+        inset 0 0 20px 10px rgba(255, 255, 255, 0.55);
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover { box-shadow: 0 16px 32px rgba(31, 96, 69, 0.16); border-color: #2f9f71; }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3));
+      pointer-events: none;
+    }
+
+    .card:hover { box-shadow: 0 16px 32px rgba(77, 77, 77, 0.18), inset 0 0 20px 10px rgba(255, 255, 255, 0.65); border-color: rgba(255, 255, 255, 0.46); }
 
     .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 0; padding: 5px 10px; margin-bottom: 10px; transition: box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
     .overview .tag { background: rgba(52, 146, 255, 0.14); color: #165188; border: 1px solid rgba(50, 116, 168, 0.30); }
@@ -290,11 +320,11 @@
       let width = 0;
       let height = 0;
       let nodes = [];
-      const speed = 0.22;
-      const maxDist = 138;
+      const speed = 0.42;
+      const maxDist = 156;
 
       function buildNodes() {
-        const count = Math.min(95, Math.max(28, Math.floor((width * height) / 26000)));
+        const count = Math.min(150, Math.max(48, Math.floor((width * height) / 17000)));
         nodes = Array.from({ length: count }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -334,10 +364,10 @@
             const d = Math.hypot(dx, dy);
             if (d > maxDist) continue;
             const alpha = (1 - d / maxDist) * 0.5;
-            ctx.strokeStyle = `rgba(77, 136, 105, ${alpha.toFixed(3)})`;
+            ctx.strokeStyle = `rgba(112, 112, 112, ${(alpha * 0.78).toFixed(3)})`;
             ctx.lineWidth = 1;
-            ctx.shadowColor = "rgba(72, 139, 105, 0.22)";
-            ctx.shadowBlur = 9;
+            ctx.shadowColor = "rgba(145, 145, 145, 0.28)";
+            ctx.shadowBlur = 11;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -346,9 +376,9 @@
         }
 
         for (const n of nodes) {
-          ctx.fillStyle = "rgba(58, 120, 88, 0.34)";
-          ctx.shadowColor = "rgba(64, 132, 96, 0.3)";
-          ctx.shadowBlur = 12;
+          ctx.fillStyle = "rgba(124, 124, 124, 0.40)";
+          ctx.shadowColor = "rgba(166, 166, 166, 0.34)";
+          ctx.shadowBlur = 14;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
           ctx.fill();
